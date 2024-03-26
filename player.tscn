@@ -4,16 +4,16 @@
 [ext_resource type="Script" path="res://player.gd" id="1_inbw4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dworo"]
-size = Vector2(120, 121)
+size = Vector2(30, 30)
 
 [node name="Player" type="Node2D"]
+z_index = 1
 script = ExtResource("1_inbw4")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1, -0.5)
-shape = SubResource("RectangleShape2D_dworo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ileaq")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_dworo")
