@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw41n0ds1h8fn"
-path="res://.godot/imported/fighter-sprite.png-3d584c003336790099f95ca5fd71533f.ctex"
+uid="uid://vg2trkjr1cp"
+path="res://.godot/imported/floorexit.png-2d8b16da76f9b69261cc84853eb0edd7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fighter-sprite.png"
-dest_files=["res://.godot/imported/fighter-sprite.png-3d584c003336790099f95ca5fd71533f.ctex"]
+source_file="res://Art/floorexit.png"
+dest_files=["res://.godot/imported/floorexit.png-2d8b16da76f9b69261cc84853eb0edd7.ctex"]
 
 [params]
 

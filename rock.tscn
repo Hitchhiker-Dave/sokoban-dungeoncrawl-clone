@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi3clifdhppin"]
+
+[ext_resource type="Texture2D" uid="uid://bhft7wfvewc73" path="res://Art/boulder.png" id="1_kh020"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsclc"]
+radius = 16.0312
+
+[node name="Rock" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kh020")
+
+[node name="RockCollision" type="RigidBody2D" parent="."]
+collision_layer = 4
+collision_mask = 5
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RockCollision"]
+shape = SubResource("CircleShape2D_fsclc")

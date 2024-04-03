@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vg2trkjr1cp"
-path="res://.godot/imported/floorexit.png-d07ac601de51c2293d9f2a844661ef6d.ctex"
+uid="uid://caepry7ty8hqa"
+path="res://.godot/imported/floortile.png-7e5225e905af961148bd4530034dc58a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://floorexit.png"
-dest_files=["res://.godot/imported/floorexit.png-d07ac601de51c2293d9f2a844661ef6d.ctex"]
+source_file="res://Art/floortile.png"
+dest_files=["res://.godot/imported/floortile.png-7e5225e905af961148bd4530034dc58a.ctex"]
 
 [params]
 

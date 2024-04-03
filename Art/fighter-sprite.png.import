@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dso616pjjglab"
-path="res://.godot/imported/tileatlas.png-efe176aad3700772b73ba169e41fa999.ctex"
+uid="uid://bw41n0ds1h8fn"
+path="res://.godot/imported/fighter-sprite.png-1e53c2b2bd109a2360e405864f93ee76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tileatlas.png"
-dest_files=["res://.godot/imported/tileatlas.png-efe176aad3700772b73ba169e41fa999.ctex"]
+source_file="res://Art/fighter-sprite.png"
+dest_files=["res://.godot/imported/fighter-sprite.png-1e53c2b2bd109a2360e405864f93ee76.ctex"]
 
 [params]
 
