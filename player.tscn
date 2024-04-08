@@ -13,8 +13,14 @@ script = ExtResource("1_inbw4")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8n0e2")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 collision_mask = 31
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_dworo")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 31
+collide_with_areas = true
+collide_with_bodies = false
