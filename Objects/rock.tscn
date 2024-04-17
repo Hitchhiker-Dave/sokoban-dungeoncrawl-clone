@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bi3clifdhppin"]
 
-[ext_resource type="Script" path="res://rock.gd" id="1_jub2h"]
+[ext_resource type="Script" path="res://Scripts/rock.gd" id="1_jub2h"]
 [ext_resource type="Texture2D" uid="uid://bhft7wfvewc73" path="res://Art/boulder.png" id="1_kh020"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fsclc"]
@@ -18,3 +18,9 @@ collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RockCollision"]
 shape = SubResource("CircleShape2D_fsclc")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 31
+collide_with_areas = true
+collide_with_bodies = false
