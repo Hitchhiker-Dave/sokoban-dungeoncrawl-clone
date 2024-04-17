@@ -16,12 +16,15 @@ script = ExtResource("2_lr8rj")
 
 [node name="Player1" parent="Player Handler" instance=ExtResource("3_7ao0u")]
 position = Vector2(240, 144)
+player_id = 1
 
 [node name="Player2" parent="Player Handler" instance=ExtResource("3_7ao0u")]
 position = Vector2(496, 112)
+player_id = 2
 
 [node name="Player3" parent="Player Handler" instance=ExtResource("3_7ao0u")]
 position = Vector2(112, 208)
+player_id = 3
 
 [node name="Rock" parent="." instance=ExtResource("4_4wian")]
 position = Vector2(368, 176)

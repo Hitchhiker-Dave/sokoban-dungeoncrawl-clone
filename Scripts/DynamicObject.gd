@@ -47,3 +47,21 @@ func move_object(direction: Vector2, distance: int):
 	tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", target_move_position, 0.16).set_trans(Tween.TRANS_BOUNCE)
 	return
+
+func get_collider(ray_cast: RayCast2D, direction : Vector2, distance : int):
+	#raycast update
+	ray_cast.target_position = direction * (move_distance)
+	ray_cast.force_raycast_update()
+	
+	if (ray_cast.is_colliding()):
+		return ray_cast.get_collider()
+	return null
+
+func is_path_clear(object : DynamicObject, direction : Vector2, distance : int):
+	#use recursion to see if a series of objects are pressed against a wall
+	
+	var new_object = object.get_collider(object.ray_cast_2d, direction, distance)
+	if (new_object == null):
+		return object.is_walkable(direction, distance)
+	
+	return is_path_clear(new_object.get_parent(), direction, distance)

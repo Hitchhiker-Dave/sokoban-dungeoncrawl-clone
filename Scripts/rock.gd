@@ -17,7 +17,7 @@ func move(direction: Vector2):
 		return
 		
 	#check for collisions
-	var collider = get_collider(direction, move_distance)
+	var collider = get_collider(ray_cast_2d, direction, move_distance)
 	
 	if (collider != null):
 		#collision found, determine what to do next based on what the object should do
@@ -32,20 +32,3 @@ func move(direction: Vector2):
 	#space can be walked on, move player
 	move_object(direction, move_distance)
 	
-func get_collider(direction : Vector2, distance : int):
-	#raycast update
-	ray_cast_2d.target_position = direction * distance
-	ray_cast_2d.force_raycast_update()
-	
-	if (ray_cast_2d.is_colliding()):
-		return ray_cast_2d.get_collider()
-	return null
-
-func is_path_clear(object : DynamicObject, direction : Vector2, distance : int):
-	#use recursion to see if a series of objects are pressed against a wall
-	
-	var new_object = object.get_collider(direction, distance)
-	if (new_object == null):
-		return object.is_walkable(direction, distance)
-	
-	return is_path_clear(new_object.get_parent(), direction, distance)
