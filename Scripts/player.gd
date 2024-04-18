@@ -2,6 +2,7 @@ extends DynamicObject
 
 @onready var ray_cast_2d = $RayCast2D
 @onready var is_active = false
+signal hit_level_transition
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +37,9 @@ func move(direction: Vector2):
 	#check if area is walkable
 	if (!is_walkable(direction, move_distance)):
 		return
+	elif(is_level_transition(direction)):
+		print("Send Signal to Transistion to Next Level (Player)")
+		hit_level_transition.emit()
 		
 	#check for collisions
 	var collider = get_collider(ray_cast_2d, direction, move_distance)
