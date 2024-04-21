@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://86hjkrclxdhg"]
+[gd_scene load_steps=6 format=3 uid="uid://86hjkrclxdhg"]
 
 [ext_resource type="PackedScene" uid="uid://dcewehjvldfkq" path="res://Environments/tile_map.tscn" id="1_dtabk"]
 [ext_resource type="Script" path="res://Scripts/Player Handler.gd" id="2_txrc6"]
 [ext_resource type="PackedScene" uid="uid://cputoiykjvyow" path="res://Objects/player.tscn" id="3_ijo6a"]
 [ext_resource type="PackedScene" uid="uid://bi3clifdhppin" path="res://Objects/rock.tscn" id="4_a1x40"]
+[ext_resource type="PackedScene" uid="uid://7sbuyh4r3bii" path="res://Objects/trap.tscn" id="5_5db84"]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -22,6 +23,10 @@ position = Vector2(496, 112)
 
 [node name="Player3" parent="Player Handler" instance=ExtResource("3_ijo6a")]
 position = Vector2(112, 208)
+player_type = 1
 
 [node name="Rock" parent="." instance=ExtResource("4_a1x40")]
 position = Vector2(368, 176)
+
+[node name="Trap" parent="." instance=ExtResource("5_5db84")]
+position = Vector2(240, 208)

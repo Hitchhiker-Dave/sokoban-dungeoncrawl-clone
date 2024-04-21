@@ -1,16 +1,27 @@
 extends Node2D 
 class_name DynamicObject 
 
+enum ObjectType{
+	FIGHTER,
+	ROGUE,
+	MAGE,
+	ENVIRONMENT,
+	TRAP,
+	ENEMY,
+	PROJECTILE
+}
+
 #Parent Class for all moveable objects (players, boulders, enemies, etc.)
-#Static objects (traps, next level, treasure, anti-magic, etc.) will need its own parent class
+#Static objects (traps, next level, treasure, anti-magic, etc.) will need its own parent class (or do I?)
 var move_distance : int
 var tween: Tween
 var is_movable : bool
+var object_type : ObjectType
 @onready var tile_map = %TileMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	is_movable = true #set equivalent static_object to false if object isn't moveable
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -18,6 +29,9 @@ func _process(_delta):
 	
 func get_is_movable():
 	return is_movable
+	
+func check_if_player(object : DynamicObject):
+	return (object.object_type == ObjectType.FIGHTER or object.object_type == ObjectType.ROGUE or object.object_type == ObjectType.MAGE)
 	
 func is_level_transition(direction: Vector2):
 	#Get current tile Vector2i
@@ -82,3 +96,6 @@ func is_path_clear(object : DynamicObject, direction : Vector2, distance : int):
 		return object.is_walkable(direction, distance)
 	
 	return is_path_clear(new_object.get_parent(), direction, distance)
+	
+func interaction(object : DynamicObject, direction : Vector2):
+	pass

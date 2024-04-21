@@ -6,12 +6,17 @@ extends DynamicObject
 func _ready():
 	move_distance = 32
 	is_movable = true
+	object_type = ObjectType.ENVIRONMENT
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
 func move(direction: Vector2):
+	#check if already moving
+	if tween and tween.is_running():
+		return
+	
 	#check if area is walkable
 	if (!is_walkable(direction, move_distance)):
 		return
@@ -25,6 +30,7 @@ func move(direction: Vector2):
 		
 		#object is moveable, check if the object in front is as well
 		if (object.get_is_movable() and is_path_clear(object, direction, move_distance)):
+			move_object(direction, move_distance)
 			object.move(direction)
 		else:
 			return
@@ -32,3 +38,4 @@ func move(direction: Vector2):
 	#space can be walked on, move player
 	move_object(direction, move_distance)
 	
+

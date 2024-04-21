@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://p81sofn2u4o2"]
 
 [ext_resource type="PackedScene" uid="uid://cqjnhylsqhl6s" path="res://Environments/Menus/main_menu.tscn" id="1_bqpg7"]
-[ext_resource type="Script" path="res://LevelHandler.gd" id="1_n6uyd"]
+[ext_resource type="Script" path="res://Scripts/LevelHandler.gd" id="1_n6uyd"]
 
 [node name="MainNode" type="Node2D"]
 

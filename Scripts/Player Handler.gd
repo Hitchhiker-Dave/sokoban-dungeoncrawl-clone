@@ -15,6 +15,7 @@ func _ready():
 	
 	for i in range(player_list.size()):
 		get_node(player_list[i].to_string()).hit_level_transition.connect(_handle_player_leaving)
+		get_node(player_list[i].to_string()).player_death.connect(_remove_player)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -24,25 +25,30 @@ func _process(_delta):
 			ready_for_next_level.emit() 
 
 	if Input.is_action_just_pressed("Next Character"):
-		player_index += 1
-		if player_index > (player_list.size() - 1):
-			player_index = 0
-		
-		active_player.is_active = false
-		active_player = player_list[player_index]
-		active_player.is_active = true
+		swap_player(1)
 		
 	elif Input.is_action_just_pressed("Previous Character"):
-		player_index -= 1
-		if player_index <= -1:
-			player_index = player_count - 1
+		swap_player(-1)
+
+func swap_player(increment : int):
+	player_index += increment
+	if player_index > (player_list.size() - 1):
+			player_index = 0
+	elif player_index <= -1:
+		player_index = player_count - 1
 		
+	if (active_player != null):
 		active_player.is_active = false
-		active_player = player_list[player_index]
-		active_player.is_active = true
+		
+	active_player = player_list[player_index]
+	active_player.is_active = true		
 		
 func _handle_player_leaving():
 	print("Signal Recived! (Player Handler)")
 	player_reached_level_transition = true
-	active_player.queue_free()
+	_remove_player()
+
+func _remove_player():
+	player_list.remove_at(player_index)
 	player_count -= 1
+	swap_player(1)
