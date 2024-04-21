@@ -49,6 +49,7 @@ func move(direction: Vector2):
 	elif(is_level_transition(direction)):
 		print("Send Signal to Transistion to Next Level (Player)")
 		hit_level_transition.emit()
+		return
 		
 	#check for collisions
 	var collider = get_collider(ray_cast_2d, direction, move_distance)

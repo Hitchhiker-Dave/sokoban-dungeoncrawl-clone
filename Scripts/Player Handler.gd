@@ -51,4 +51,5 @@ func _handle_player_leaving():
 func _remove_player():
 	player_list.remove_at(player_index)
 	player_count -= 1
-	swap_player(1)
+	if player_count > 0:
+		swap_player(1)

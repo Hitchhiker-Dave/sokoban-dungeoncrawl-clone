@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://r4glqjshsw0q"]
+
+[ext_resource type="Script" path="res://Skeleton.gd" id="1_wkj86"]
+[ext_resource type="Texture2D" uid="uid://c6eskmjkv2qal" path="res://Art/skeleton.png" id="2_dacth"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45x83"]
+size = Vector2(30, 30)
+
+[node name="Skeleton" type="Node2D"]
+script = ExtResource("1_wkj86")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dacth")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_45x83")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 31
+collide_with_areas = true
