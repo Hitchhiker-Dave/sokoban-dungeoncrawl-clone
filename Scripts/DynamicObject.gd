@@ -6,6 +6,7 @@ enum ObjectType{
 	ROGUE,
 	MAGE,
 	ENVIRONMENT,
+	TREASURE,
 	TRAP,
 	ENEMY,
 	PROJECTILE

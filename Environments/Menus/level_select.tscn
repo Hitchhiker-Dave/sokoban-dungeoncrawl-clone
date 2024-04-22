@@ -70,6 +70,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Test Level"
 
+[node name="TemplateLevel" type="Button" parent="UI/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Template Level"
+
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/StartMenu" to="." method="_on_start_menu_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer2/GridContainer/Tutorial1" to="." method="_on_tutorial_1_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer3/TestLevel" to="." method="_on_test_level_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer3/TemplateLevel" to="." method="_on_template_level_pressed"]

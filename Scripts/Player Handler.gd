@@ -6,6 +6,7 @@ extends Node2D
 @onready var player_count : int
 @onready var player_reached_level_transition = false
 signal ready_for_next_level
+signal player_moved
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,6 +17,7 @@ func _ready():
 	for i in range(player_list.size()):
 		get_node(player_list[i].to_string()).hit_level_transition.connect(_handle_player_leaving)
 		get_node(player_list[i].to_string()).player_death.connect(_remove_player)
+		get_node(player_list[i].to_string()).has_moved.connect(end_player_turn)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -53,3 +55,14 @@ func _remove_player():
 	player_count -= 1
 	if player_count > 0:
 		swap_player(1)
+	print(player_count)
+		
+func toggle_activity():
+	if active_player.is_active:
+		active_player.is_active = false
+	else:
+		active_player.is_active = true
+		
+func end_player_turn():
+	player_moved.emit()
+	

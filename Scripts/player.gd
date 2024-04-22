@@ -5,6 +5,7 @@ extends DynamicObject
 
 signal hit_level_transition
 signal player_death
+signal has_moved
 @export var player_type : ObjectType 
 @onready var sprite_2d = $Sprite2D
 # Called when the node enters the scene tree for the first time.
@@ -49,6 +50,7 @@ func move(direction: Vector2):
 	elif(is_level_transition(direction)):
 		print("Send Signal to Transistion to Next Level (Player)")
 		hit_level_transition.emit()
+		queue_free()
 		return
 		
 	#check for collisions
@@ -62,6 +64,7 @@ func move(direction: Vector2):
 		if (object.get_is_movable() and is_path_clear(object, direction, move_distance)):
 			#will not need to check if movable once generic interaction function is implimented
 			
+			has_moved.emit()
 			move_object(direction, move_distance)
 			object.move(direction) #would replace with generic interact() once implemented
 									#should be fine since I'd want the player to go onto the hazard, then die
@@ -75,7 +78,8 @@ func move(direction: Vector2):
 		else:
 			return
 			
-	#space can be walked on, move player
+	#space can be walked on, move 
+	has_moved.emit()
 	move_object(direction, move_distance)
 
 		

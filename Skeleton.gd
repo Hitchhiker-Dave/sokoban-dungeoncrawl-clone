@@ -9,11 +9,15 @@ extends DynamicObject
 func _ready():
 	object_type = ObjectType.ENEMY
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	#use raycast to find and fire an arrow at the first fighter or rogue it sees
+#do turn when enemy handler says so
+func do_turn():
 	var target_direction = search_for_target()
-	print(target_direction)
+	if(target_direction):
+		var instance = arrow.instantiate()
+		instance.facing = target_direction
+		add_sibling(instance)
+		instance.position = global_position
+		instance.tile_map = tile_map
 
 func search_for_target():
 	#looks for direction of player and returns direction
@@ -23,6 +27,7 @@ func search_for_target():
 		
 		if (collider != null):
 			var object = collider.get_parent()
+			print(object)
 
 			if check_if_player(object):
 				#walk to see if reachable; whole thing is glitchy but works
@@ -30,14 +35,11 @@ func search_for_target():
 					continue
 				
 				if object.object_type == ObjectType.FIGHTER:
-					print("Fighter Spotted")
 					return direction[i]
 				elif object.object_type == ObjectType.ROGUE:
-					print("Rogue Spotted")
 					return direction[i]
 					
 			else:
-				print("Not a player")
 				continue
 				
 	return null #nothing found
