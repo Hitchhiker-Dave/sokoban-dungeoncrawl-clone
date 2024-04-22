@@ -7,7 +7,7 @@ var facing : Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	object_type = ObjectType.ENEMY
-	move_distance = 1
+	move_distance = 16
 	rotation = rotation
 	look_at(facing)
 	

@@ -11,6 +11,7 @@
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_vhe64")
 next_level = "res://Environments/Levels/test_level.tscn"
+current_level = "res://Environments/Levels/Tutorials/level2.tscn"
 
 [node name="TileMap" parent="." instance=ExtResource("2_rnhd5")]
 unique_name_in_owner = true

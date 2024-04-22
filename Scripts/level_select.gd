@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var next_level = "res://Environments/Levels/test_level.tscn"
-@onready var menu = $UI/Menu
 
 func _on_start_menu_pressed():
 	SceneSwitcher.switch_scene("res://Environments/Menus/main_menu.tscn")

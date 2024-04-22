@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var level_select = "res://Environments/Menus/level_select.tscn"
 @export var next_level : String
+@export var current_level : String
 @onready var menu = $UI/Menu
 @onready var end_screen = $"UI/End Screen"
 @onready var player_handler = $"Player Handler"
@@ -29,7 +30,8 @@ func _process(_delta):
 		is_paused = !is_paused
 			
 func restart_level():
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
+	SceneSwitcher.switch_scene(current_level)
 
 func go_to_next_level():
 	SceneSwitcher.switch_scene(next_level)

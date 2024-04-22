@@ -37,10 +37,12 @@ func _physics_process(_delta):
 			move(Vector2.LEFT)
 		if (Input.is_action_just_pressed("Move Right") or
 			Input.is_action_pressed("Move Right")):
+			print("moved right")	
 			move(Vector2.RIGHT)
 
 func move(direction: Vector2):
 	#check if already moving
+	
 	if tween and tween.is_running():
 		return
 	
@@ -75,6 +77,10 @@ func move(direction: Vector2):
 			if (object_type != ObjectType.ROGUE):
 				player_death.emit()
 				queue_free()
+		elif (object.object_type == ObjectType.ENEMY):
+			move_object(direction, move_distance)
+			object.queue_free()
+			
 		else:
 			return
 			
@@ -82,4 +88,5 @@ func move(direction: Vector2):
 	has_moved.emit()
 	move_object(direction, move_distance)
 
-		
+func _exit_tree():
+	print("Exited the Tree")
