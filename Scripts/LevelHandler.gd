@@ -4,6 +4,7 @@ extends Node2D
 @export var next_level : String
 @export var current_level : String
 @onready var menu = $UI/Menu
+@onready var ui = $UI
 @onready var end_screen = $"UI/End Screen"
 @onready var player_handler = $"Player Handler"
 @onready var enemy_handler = $"Enemy Handler"
@@ -11,6 +12,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ui.show() #in case I forget to activate the ui after editing the level
 	if player_handler: #error guard since main menu and level select don't have this
 		player_handler.ready_for_next_level.connect(_end_of_level)
 

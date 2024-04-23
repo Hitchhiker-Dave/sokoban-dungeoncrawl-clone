@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://due4du5baki8s"]
 
 [ext_resource type="Script" path="res://Scripts/LevelHandler.gd" id="1_vhe64"]
-[ext_resource type="PackedScene" uid="uid://dcewehjvldfkq" path="res://Environments/tile_map.tscn" id="2_rnhd5"]
+[ext_resource type="PackedScene" uid="uid://dcewehjvldfkq" path="res://Environments/Levels/tile_map.tscn" id="2_rnhd5"]
 [ext_resource type="Script" path="res://Scripts/Player Handler.gd" id="3_52lxp"]
 [ext_resource type="PackedScene" uid="uid://cputoiykjvyow" path="res://Objects/player.tscn" id="4_7esxu"]
 [ext_resource type="Script" path="res://Scripts/Enemy Handler.gd" id="5_kr2ge"]
@@ -10,7 +10,7 @@
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_vhe64")
-next_level = "res://Environments/Levels/test_level.tscn"
+next_level = "res://Environments/Levels/Tutorials/level3.tscn"
 current_level = "res://Environments/Levels/Tutorials/level2.tscn"
 
 [node name="TileMap" parent="." instance=ExtResource("2_rnhd5")]

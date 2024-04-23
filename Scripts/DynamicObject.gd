@@ -93,8 +93,7 @@ func is_path_clear(object : DynamicObject, direction : Vector2, distance : int):
 	#use recursion to see if a series of objects are pressed against a wall
 	
 	if (!object.get_is_movable()):
-		#return true
-		pass
+		return true
 	
 	var new_object = object.get_collider(object.ray_cast_2d, direction, distance)
 	if (new_object == null):

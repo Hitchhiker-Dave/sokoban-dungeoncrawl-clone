@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg8cx5cc7ntij"]
+
+[ext_resource type="Script" path="res://Scripts/credits_page.gd" id="1_4ag7n"]
+[ext_resource type="Theme" uid="uid://6g50mxodmcvl" path="res://UI Styles/menu_buttons.tres" id="1_ilpjx"]
+[ext_resource type="Texture2D" uid="uid://cgmnrnueqngqr" path="res://Art/GBA WSU Presence Page Link(small).png" id="2_qf6b1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u7kg1"]
+font_size = 32
+font_color = Color(1, 0.945098, 0.909804, 1)
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Credits Page" type="Node2D"]
+script = ExtResource("1_4ag7n")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+theme = ExtResource("1_ilpjx")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0666667, 0.113725, 0.207843, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.5
+offset_top = -70.5
+offset_right = 125.5
+offset_bottom = 70.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "Special Thanks
+to the Members
+of GBA"
+label_settings = SubResource("LabelSettings_u7kg1")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_qf6b1")
+
+[node name="Spacer" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/Spacer"]
+layout_mode = 2
+text = "  "
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Art & Code 
+by Dante
+Garcia"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Control/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Return to Main Menu"
+
+[connection signal="pressed" from="Control/HBoxContainer/VBoxContainer2/Button" to="." method="_on_button_pressed"]

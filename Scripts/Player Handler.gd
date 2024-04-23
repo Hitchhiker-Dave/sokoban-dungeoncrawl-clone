@@ -23,7 +23,6 @@ func _ready():
 func _process(_delta):
 	if player_count <= 0: #no more players, handle win lose state
 		if player_reached_level_transition:
-			print("Send Signal to Transition to Next Level (Player Handler)")
 			ready_for_next_level.emit() 
 
 	if Input.is_action_just_pressed("Next Character"):
@@ -46,7 +45,6 @@ func swap_player(increment : int):
 	active_player.is_active = true		
 		
 func _handle_player_leaving():
-	print("Signal Recived! (Player Handler)")
 	player_reached_level_transition = true
 	_remove_player()
 
@@ -55,7 +53,6 @@ func _remove_player():
 	player_count -= 1
 	if player_count > 0:
 		swap_player(1)
-	print(player_count)
 		
 func toggle_activity():
 	if active_player.is_active:

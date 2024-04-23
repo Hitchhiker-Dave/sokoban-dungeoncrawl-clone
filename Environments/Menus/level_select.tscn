@@ -27,54 +27,76 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
+[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " "
+
 [node name="StartMenu" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Start Menu"
+text = "Return to Main Menu"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 
-[node name="GridContainer" type="GridContainer" parent="UI/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-columns = 3
-
-[node name="Tutorial1" type="Button" parent="UI/VBoxContainer/HBoxContainer2/GridContainer"]
-layout_mode = 2
-text = "Level 1"
-
-[node name="Button2" type="Button" parent="UI/VBoxContainer/HBoxContainer2/GridContainer"]
-layout_mode = 2
-text = "Level 2"
-
-[node name="Button3" type="Button" parent="UI/VBoxContainer/HBoxContainer2/GridContainer"]
-layout_mode = 2
-text = "Level 3"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="UI/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/CenterContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TestLevel" type="Button" parent="UI/VBoxContainer/HBoxContainer3"]
+[node name="TestLevel" type="Button" parent="UI/CenterContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Test Level"
 
-[node name="TemplateLevel" type="Button" parent="UI/VBoxContainer/HBoxContainer3"]
+[node name="TemplateLevel" type="Button" parent="UI/CenterContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "Template Level"
 
+[node name="GridContainer" type="GridContainer" parent="UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Tutorial1" type="Button" parent="UI/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Level 1"
+
+[node name="Tutorial2" type="Button" parent="UI/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Level 2"
+
+[node name="Tutorial3" type="Button" parent="UI/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Level 3"
+
+[node name="Tutorial4" type="Button" parent="UI/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Level 4"
+
 [connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/StartMenu" to="." method="_on_start_menu_pressed"]
-[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer2/GridContainer/Tutorial1" to="." method="_on_tutorial_1_pressed"]
-[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer3/TestLevel" to="." method="_on_test_level_pressed"]
-[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer3/TemplateLevel" to="." method="_on_template_level_pressed"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/HBoxContainer3/TestLevel" to="." method="_on_test_level_pressed"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/HBoxContainer3/TemplateLevel" to="." method="_on_template_level_pressed"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/Tutorial1" to="." method="_on_tutorial_1_pressed"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/Tutorial2" to="." method="_on_tutorial_2_pressed"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/Tutorial3" to="." method="_on_tutorial_3_pressed"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/Tutorial4" to="." method="_on_tutorial_4_pressed"]

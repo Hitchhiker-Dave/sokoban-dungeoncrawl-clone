@@ -1,12 +1,14 @@
 extends Node2D
 
-@onready var next_level = "res://Environments/Menus/level_select.tscn"
+@onready var next_level_menu = "res://Environments/Menus/level_select.tscn"
+@onready var controls_menu = "res://Environments/Menus/controls_menu.tscn"
+@onready var credits_menu = "res://Environments/Menus/credits_page.tscn"
 
 func _on_start_button_pressed():
-	SceneSwitcher.switch_scene(next_level)
+	SceneSwitcher.switch_scene(next_level_menu)
 
-func _on_credits_pressed():
-	pass #Credits page tba
+func _on_controls_button_pressed():
+	SceneSwitcher.switch_scene(controls_menu)
 
-func _on_quit_pressed():
-	get_tree().quit()
+func _on_credits_button_pressed():
+	SceneSwitcher.switch_scene(credits_menu)

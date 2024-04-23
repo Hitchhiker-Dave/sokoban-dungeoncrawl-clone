@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://d25ec3ianypis"]
 
 [ext_resource type="Texture2D" uid="uid://btx5ec0clurat" path="res://Art/arrow.png" id="1_a8646"]
-[ext_resource type="Script" path="res://Objects/arrow.gd" id="1_hv1yh"]
+[ext_resource type="Script" path="res://Scripts/arrow.gd" id="1_xiwqc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a2cot"]
 size = Vector2(30, 30)
 
 [node name="Arrow" type="Node2D"]
-script = ExtResource("1_hv1yh")
+script = ExtResource("1_xiwqc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_a8646")

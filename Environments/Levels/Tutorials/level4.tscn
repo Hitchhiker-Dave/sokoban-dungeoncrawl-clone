@@ -1,0 +1,125 @@
+[gd_scene load_steps=11 format=3 uid="uid://ry6523sf1jic"]
+
+[ext_resource type="Script" path="res://Scripts/LevelHandler.gd" id="1_rbeod"]
+[ext_resource type="PackedScene" uid="uid://dcewehjvldfkq" path="res://Environments/Levels/tile_map.tscn" id="2_c11x4"]
+[ext_resource type="Script" path="res://Scripts/Player Handler.gd" id="3_b4qft"]
+[ext_resource type="PackedScene" uid="uid://cputoiykjvyow" path="res://Objects/player.tscn" id="4_qe1xs"]
+[ext_resource type="Script" path="res://Scripts/Enemy Handler.gd" id="5_eefm8"]
+[ext_resource type="PackedScene" uid="uid://r4glqjshsw0q" path="res://Objects/skeleton.tscn" id="6_5qjy5"]
+[ext_resource type="Theme" uid="uid://6g50mxodmcvl" path="res://UI Styles/menu_buttons.tres" id="6_ss2ve"]
+[ext_resource type="PackedScene" uid="uid://7sbuyh4r3bii" path="res://Objects/trap.tscn" id="7_orhfu"]
+[ext_resource type="PackedScene" uid="uid://dbbsctcxd21rx" path="res://Objects/treasure.tscn" id="8_iob67"]
+[ext_resource type="PackedScene" uid="uid://bi3clifdhppin" path="res://Objects/rock.tscn" id="9_5swys"]
+
+[node name="Level4" type="Node2D"]
+script = ExtResource("1_rbeod")
+next_level = "res://Environments/Menus/winning_screen.tscn"
+current_level = "res://Environments/Levels/Tutorials/level4.tscn"
+
+[node name="TileMap" parent="." instance=ExtResource("2_c11x4")]
+unique_name_in_owner = true
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 65555, 0, 0, 131091, 0, 0, 196627, 0, 0, 262163, 0, 0, 327699, 0, 0, 393235, 0, 0, 458771, 0, 0, 524307, 0, 0, 589843, 0, 0, 655379, 0, 0, 720915, 0, 0, 720914, 0, 0, 720913, 0, 0, 720912, 0, 0, 720911, 0, 0, 720910, 0, 0, 720909, 0, 0, 720908, 0, 0, 720907, 0, 0, 720906, 0, 0, 720905, 0, 0, 720904, 0, 0, 720903, 0, 0, 720902, 0, 0, 720901, 0, 0, 720900, 0, 0, 720899, 0, 0, 720898, 0, 0, 720897, 0, 0, 655360, 0, 0, 720896, 0, 0, 589824, 0, 0, 524288, 0, 0, 458752, 0, 0, 393216, 0, 0, 327680, 0, 0, 262144, 0, 0, 196608, 0, 0, 131072, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0, 65552, 0, 0, 65553, 0, 0, 65554, 0, 0, 655378, 0, 0, 655377, 0, 0, 655376, 0, 0, 655375, 0, 0, 655374, 0, 0, 655373, 0, 0, 655372, 0, 0, 655371, 0, 0, 655370, 0, 0, 655369, 0, 0, 655368, 0, 0, 655367, 0, 0, 655366, 0, 0, 655365, 0, 0, 655364, 0, 0, 655363, 0, 0, 655362, 0, 0, 655361, 0, 0, 589825, 0, 0, 524289, 0, 0, 458753, 0, 0, 393217, 0, 0, 327681, 0, 0, 262145, 0, 0, 196609, 0, 0, 131073, 0, 0, 131090, 0, 0, 196626, 0, 0, 262162, 0, 0, 327698, 0, 0, 393234, 0, 0, 458770, 0, 0, 524306, 0, 0, 589842, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131089, 0, 0, 196625, 0, 0, 262161, 0, 0, 327697, 0, 0, 393233, 0, 0, 393232, 0, 0, 458768, 0, 0, 524304, 0, 0, 524305, 0, 0, 589841, 0, 0, 458769, 0, 0, 589840, 0, 0, 589839, 0, 0, 589838, 0, 0, 589837, 0, 0, 589836, 0, 0, 589835, 0, 0, 589834, 0, 0, 589833, 0, 0, 589832, 0, 0, 589831, 0, 0, 589830, 0, 0, 589829, 0, 0, 589828, 0, 0, 589827, 0, 0, 589826, 0, 0, 524290, 0, 0, 458754, 0, 0, 393218, 0, 0, 327682, 0, 0, 262146, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 196624, 0, 0, 262160, 0, 0, 327696, 0, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 0, 524302, 0, 0, 524301, 0, 0, 524300, 0, 0, 524299, 0, 0, 524298, 0, 0, 524297, 0, 0, 524296, 0, 0, 524295, 0, 0, 524294, 0, 0, 524293, 0, 0, 524292, 0, 0, 524291, 0, 0, 458755, 0, 0, 393219, 0, 0, 327683, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 262159, 0, 0, 327695, 0, 0, 458766, 0, 0, 458763, 0, 0, 458762, 65536, 0, 458761, 0, 0, 458760, 0, 0, 458759, 0, 0, 458758, 0, 0, 458757, 65536, 0, 458756, 65536, 0, 393220, 65536, 0, 327684, 65536, 0, 327685, 65536, 0, 327686, 65536, 0, 327687, 65536, 0, 393224, 65536, 0, 393225, 65536, 0, 393226, 65536, 0, 393227, 65536, 0, 393228, 65536, 0, 393229, 65536, 0, 327692, 65536, 0, 327691, 65536, 0, 327690, 65536, 0, 327689, 65536, 0, 327688, 0, 0, 393222, 0, 0, 393221, 65536, 0, 393223, 65536, 0, 393230, 0, 0, 458765, 0, 0, 458764, 0, 0, 327694, 0, 0, 327693, 131072, 0)
+
+[node name="Player Handler" type="Node2D" parent="."]
+script = ExtResource("3_b4qft")
+
+[node name="Player1" parent="Player Handler" instance=ExtResource("4_qe1xs")]
+position = Vector2(176, 240)
+player_type = 1
+
+[node name="Player2" parent="Player Handler" instance=ExtResource("4_qe1xs")]
+position = Vector2(144, 240)
+
+[node name="Enemy Handler" type="Node2D" parent="."]
+script = ExtResource("5_eefm8")
+
+[node name="Skeleton" parent="Enemy Handler" instance=ExtResource("6_5qjy5")]
+position = Vector2(240, 176)
+
+[node name="UI" type="Control" parent="."]
+visible = false
+z_index = 1
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+theme = ExtResource("6_ss2ve")
+
+[node name="Menu" type="Control" parent="UI"]
+visible = false
+z_index = 1
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="TextureRect" type="ColorRect" parent="UI/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.498039)
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/CenterContainer"]
+layout_mode = 2
+
+[node name="Menu_Level_Select_Button" type="Button" parent="UI/Menu/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Level Select"
+
+[node name="Menu_Restart_Button" type="Button" parent="UI/Menu/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Restart"
+
+[node name="Menu_Skip_Level_Button" type="Button" parent="UI/Menu/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Skip Level"
+
+[node name="End Screen" type="Control" parent="UI"]
+visible = false
+z_index = 1
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="TextureRect" type="ColorRect" parent="UI/End Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00392157, 0.00392157, 0.00392157, 0.498039)
+
+[node name="Trap" parent="." instance=ExtResource("7_orhfu")]
+position = Vector2(272, 208)
+
+[node name="Rock" parent="." instance=ExtResource("9_5swys")]
+position = Vector2(336, 176)
+
+[node name="Rock2" parent="." instance=ExtResource("9_5swys")]
+position = Vector2(336, 208)
+
+[node name="Treasure" parent="." instance=ExtResource("8_iob67")]
+position = Vector2(336, 240)
+
+[connection signal="player_moved" from="Player Handler" to="." method="_on_player_handler_player_moved"]
+[connection signal="pressed" from="UI/Menu/CenterContainer/HBoxContainer/Menu_Level_Select_Button" to="." method="_on_menu_level_select_button_pressed"]
+[connection signal="pressed" from="UI/Menu/CenterContainer/HBoxContainer/Menu_Restart_Button" to="." method="_on_menu_restart_button_pressed"]
+[connection signal="pressed" from="UI/Menu/CenterContainer/HBoxContainer/Menu_Skip_Level_Button" to="." method="_on_menu_skip_level_button_pressed"]

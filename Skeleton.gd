@@ -8,11 +8,12 @@ extends DynamicObject
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	object_type = ObjectType.ENEMY
+	is_movable = true
 
 #do turn when enemy handler says so
 func do_turn():
 	var target_direction = search_for_target()
-	if(target_direction):
+	if(target_direction != null):
 		var instance = arrow.instantiate()
 		instance.facing = target_direction
 		add_sibling(instance)
@@ -27,7 +28,6 @@ func search_for_target():
 		
 		if (collider != null):
 			var object = collider.get_parent()
-			print(object)
 
 			if check_if_player(object):
 				#walk to see if reachable; whole thing is glitchy but works

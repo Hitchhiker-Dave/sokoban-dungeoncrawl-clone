@@ -37,7 +37,6 @@ func _physics_process(_delta):
 			move(Vector2.LEFT)
 		if (Input.is_action_just_pressed("Move Right") or
 			Input.is_action_pressed("Move Right")):
-			print("moved right")	
 			move(Vector2.RIGHT)
 
 func move(direction: Vector2):
@@ -50,7 +49,6 @@ func move(direction: Vector2):
 	if (!is_walkable(direction, move_distance)):
 		return
 	elif(is_level_transition(direction)):
-		print("Send Signal to Transistion to Next Level (Player)")
 		hit_level_transition.emit()
 		queue_free()
 		return
@@ -72,14 +70,21 @@ func move(direction: Vector2):
 									#should be fine since I'd want the player to go onto the hazard, then die
 			return
 		elif (object.object_type == ObjectType.TRAP):
+			has_moved.emit()
 			move_object(direction, move_distance)
 			#Ensure anyone other then the rogue will die if they step on the trap
 			if (object_type != ObjectType.ROGUE):
 				player_death.emit()
 				queue_free()
+				
 		elif (object.object_type == ObjectType.ENEMY):
+			has_moved.emit()
 			move_object(direction, move_distance)
 			object.queue_free()
+			
+		elif (object.object_type == ObjectType.TREASURE):
+			has_moved.emit()
+			move_object(direction, move_distance)
 			
 		else:
 			return
@@ -87,6 +92,3 @@ func move(direction: Vector2):
 	#space can be walked on, move 
 	has_moved.emit()
 	move_object(direction, move_distance)
-
-func _exit_tree():
-	print("Exited the Tree")

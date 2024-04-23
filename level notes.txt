@@ -1,0 +1,5 @@
+Tutorial Levels (1-)
+1: Teaches Basic Movement
+2: Teaches How to Move Rocks
+3: Teaches that different characters have different uses, the rogue's use is that they disarms traps
+4: Teachs that the fighter blocks arrows; player MUST learn how to switch characters

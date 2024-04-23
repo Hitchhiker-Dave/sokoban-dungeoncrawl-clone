@@ -11,7 +11,6 @@ func switch_scene(res_path):
 	call_deferred("_deferred_switch_scene", res_path)
 		
 func _deferred_switch_scene(res_path):
-	print(current_scene)
 	if is_instance_valid(current_scene):
 		current_scene.free()
 	var s = load(res_path)

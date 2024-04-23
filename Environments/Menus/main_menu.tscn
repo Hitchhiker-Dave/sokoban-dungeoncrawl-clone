@@ -48,22 +48,22 @@ size_flags_horizontal = 4
 
 [node name="Start Button" type="Button" parent="UI/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Quit")
-focus_neighbor_bottom = NodePath("../Credits")
+focus_neighbor_top = NodePath("../Controls Button")
+focus_neighbor_bottom = NodePath("../Credits Button")
 text = "Start Game"
 
-[node name="Credits" type="Button" parent="UI/VBoxContainer/VBoxContainer"]
+[node name="Controls Button" type="Button" parent="UI/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Credits Button")
+focus_neighbor_bottom = NodePath("../Start Button")
+text = "Controls"
+
+[node name="Credits Button" type="Button" parent="UI/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Start Button")
-focus_neighbor_bottom = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../Controls Button")
 text = "Credits"
 
-[node name="Quit" type="Button" parent="UI/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../Credits")
-focus_neighbor_bottom = NodePath("../Start Button")
-text = "Quit"
-
 [connection signal="pressed" from="UI/VBoxContainer/VBoxContainer/Start Button" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="UI/VBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="UI/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/VBoxContainer/Controls Button" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/VBoxContainer/Credits Button" to="." method="_on_credits_button_pressed"]

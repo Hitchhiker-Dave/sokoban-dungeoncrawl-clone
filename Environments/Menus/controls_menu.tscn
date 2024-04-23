@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp6ygeqpn65ru"]
+
+[ext_resource type="Theme" uid="uid://6g50mxodmcvl" path="res://UI Styles/menu_buttons.tres" id="1_288r7"]
+[ext_resource type="Script" path="res://Scripts/controls_menu.gd" id="1_sf1g4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8tw1g"]
+font_size = 32
+font_color = Color(1, 0.945098, 0.909804, 1)
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Controls Menu" type="Node2D"]
+script = ExtResource("1_sf1g4")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+theme = ExtResource("1_288r7")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0666667, 0.113725, 0.207843, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -94.5
+offset_right = 188.0
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "Movement: WASD
+Menu: ESC
+Change Character: Q & E
+Restart Level: R"
+label_settings = SubResource("LabelSettings_8tw1g")
+horizontal_alignment = 1
+
+[node name="Main Menu Button" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Return to Main Menu"
+
+[connection signal="pressed" from="Control/VBoxContainer/Main Menu Button" to="." method="_on_main_menu_button_pressed"]

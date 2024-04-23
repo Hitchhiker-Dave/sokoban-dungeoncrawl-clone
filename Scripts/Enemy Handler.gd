@@ -4,5 +4,7 @@ extends Node2D
 
 #activate when the level says the player's turn is over (currently when the player moves)
 func enemy_turn():
+		
 	for enemy in enemy_list:
-		enemy.do_turn()
+		if is_instance_valid(enemy):
+			enemy.do_turn()

@@ -5,7 +5,6 @@ extends DynamicObject
 func _ready():
 	object_type = ObjectType.TRAP
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
