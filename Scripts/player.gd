@@ -8,11 +8,14 @@ signal player_death
 signal has_moved
 @export var player_type : ObjectType 
 @onready var sprite_2d = $Sprite2D
+@onready var marker = $Marker
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	move_distance = 32
 	is_movable = true
 	object_type = player_type
+	marker.hide()
 	
 	if (object_type == ObjectType.FIGHTER):
 		sprite_2d.texture = load("res://Art/fighter-sprite.png")
@@ -20,12 +23,13 @@ func _ready():
 		sprite_2d.texture = load("res://Art/Rogue.png")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta):
+func _physics_process(delta):
 	#check if player is controlling this paticular character\
 	
 	if is_active: #if true, you can move the player
 		# basic tile movement
-		#input buffer
+		marker.position.y = 2 * roundf(sin(Time.get_ticks_msec() * delta * 0.9)) - 20
+		
 		if ((Input.is_action_just_pressed("Move Up") or
 			Input.is_action_pressed("Move Up"))):
 			move(Vector2.UP)
@@ -75,7 +79,6 @@ func move(direction: Vector2):
 			#Ensure anyone other then the rogue will die if they step on the trap
 			if (object_type != ObjectType.ROGUE):
 				player_death.emit()
-				queue_free()
 				
 		elif (object.object_type == ObjectType.ENEMY):
 			has_moved.emit()
@@ -92,3 +95,9 @@ func move(direction: Vector2):
 	#space can be walked on, move 
 	has_moved.emit()
 	move_object(direction, move_distance)
+
+func _on_area_2d_area_entered(area):
+	var object = area.get_parent()
+	
+	if (object.object_type == ObjectType.ENEMY and self.object_type != ObjectType.FIGHTER):
+		player_death.emit()

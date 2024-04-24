@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/credits_page.gd" id="1_4ag7n"]
 [ext_resource type="Theme" uid="uid://6g50mxodmcvl" path="res://UI Styles/menu_buttons.tres" id="1_ilpjx"]
-[ext_resource type="Texture2D" uid="uid://cgmnrnueqngqr" path="res://Art/GBA WSU Presence Page Link(small).png" id="2_qf6b1"]
+[ext_resource type="Texture2D" uid="uid://bs0578yni0545" path="res://Art/gba_discord_link_8px.png" id="3_a1agr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u7kg1"]
 font_size = 32
@@ -63,7 +63,7 @@ horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_qf6b1")
+texture = ExtResource("3_a1agr")
 
 [node name="Spacer" type="VBoxContainer" parent="Control/HBoxContainer"]
 layout_mode = 2

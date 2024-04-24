@@ -10,14 +10,16 @@ signal player_moved
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	active_player = player_list[player_index]
-	active_player.is_active = true
-	player_count = player_list.size()
 	
 	for i in range(player_list.size()):
-		get_node(player_list[i].to_string()).hit_level_transition.connect(_handle_player_leaving)
-		get_node(player_list[i].to_string()).player_death.connect(_remove_player)
+		get_node(player_list[i].to_string()).hit_level_transition.connect(handle_player_leaving)
+		get_node(player_list[i].to_string()).player_death.connect(remove_player)
 		get_node(player_list[i].to_string()).has_moved.connect(end_player_turn)
+		
+	active_player = player_list[player_index]
+	active_player.is_active = true
+	active_player.marker.show()
+	player_count = player_list.size()
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -39,22 +41,31 @@ func swap_player(increment : int):
 		player_index = player_count - 1
 		
 	if (active_player != null):
+		active_player.marker.hide()
 		active_player.is_active = false
+		active_player = player_list[player_index]
+		active_player.is_active = true		
+		active_player.marker.show()		
 		
-	active_player = player_list[player_index]
-	active_player.is_active = true		
-		
-func _handle_player_leaving():
+func handle_player_leaving():
 	player_reached_level_transition = true
-	_remove_player()
+	remove_player()
 
-func _remove_player():
+func remove_player():
+	print("Removing Player at _remove_player()")
+	var current_player = player_list[player_index]
 	player_list.remove_at(player_index)
+	current_player.queue_free()
 	player_count -= 1
 	if player_count > 0:
 		swap_player(1)
+	else:
+		return
 		
 func toggle_activity():
+	if active_player == null:
+		return #prevent null error via early exits
+	
 	if active_player.is_active:
 		active_player.is_active = false
 	else:

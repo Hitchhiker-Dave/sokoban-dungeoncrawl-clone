@@ -36,8 +36,19 @@ script = ExtResource("5_eefm8")
 [node name="Skeleton" parent="Enemy Handler" instance=ExtResource("6_5qjy5")]
 position = Vector2(240, 176)
 
+[node name="Trap" parent="." instance=ExtResource("7_orhfu")]
+position = Vector2(272, 208)
+
+[node name="Rock" parent="." instance=ExtResource("9_5swys")]
+position = Vector2(336, 176)
+
+[node name="Rock2" parent="." instance=ExtResource("9_5swys")]
+position = Vector2(336, 208)
+
+[node name="Treasure" parent="." instance=ExtResource("8_iob67")]
+position = Vector2(336, 240)
+
 [node name="UI" type="Control" parent="."]
-visible = false
 z_index = 1
 y_sort_enabled = true
 layout_mode = 3
@@ -107,17 +118,56 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.00392157, 0.00392157, 0.00392157, 0.498039)
 
-[node name="Trap" parent="." instance=ExtResource("7_orhfu")]
-position = Vector2(272, 208)
+[node name="Dev Hints" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Rock" parent="." instance=ExtResource("9_5swys")]
-position = Vector2(336, 176)
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Dev Hints"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 74.0
+offset_right = 526.0
+offset_bottom = 180.0
+grow_horizontal = 2
 
-[node name="Rock2" parent="." instance=ExtResource("9_5swys")]
-position = Vector2(336, 208)
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Dev Hints/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 
-[node name="Treasure" parent="." instance=ExtResource("8_iob67")]
-position = Vector2(336, 240)
+[node name="Tip 1" type="Label" parent="UI/Dev Hints/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Each Character has"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Dev Hints"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = 232.0
+offset_right = 574.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Dev Hints/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Tip 2" type="Label" parent="UI/Dev Hints/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "their own strengths"
+horizontal_alignment = 1
 
 [connection signal="player_moved" from="Player Handler" to="." method="_on_player_handler_player_moved"]
 [connection signal="pressed" from="UI/Menu/CenterContainer/HBoxContainer/Menu_Level_Select_Button" to="." method="_on_menu_level_select_button_pressed"]

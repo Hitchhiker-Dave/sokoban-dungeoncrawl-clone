@@ -25,17 +25,8 @@ func _process(_delta):
 	
 	if (collider != null):
 		var object = collider.get_parent()
-		
-		if (check_if_player(object)):
-			#player collision handling
-			if (object.object_type != ObjectType.FIGHTER):
-				
-				object.queue_free()
-				queue_free()
-			else:
-				queue_free()
 			
-		elif (object.object_type == ObjectType.ENVIRONMENT):
+		if (object.object_type == ObjectType.ENVIRONMENT):
 			queue_free()
 			
 	position += facing * move_distance
