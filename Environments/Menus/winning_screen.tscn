@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://8rtbvddux7ay"]
 
-[ext_resource type="Script" path="res://Winning Screen.gd" id="1_rjck0"]
+[ext_resource type="Script" path="res://Scripts/Winning Screen.gd" id="1_rjck0"]
 [ext_resource type="Theme" uid="uid://6g50mxodmcvl" path="res://UI Styles/menu_buttons.tres" id="2_by52o"]
 
 [node name="Winning Screen" type="Node2D"]

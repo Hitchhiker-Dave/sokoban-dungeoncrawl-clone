@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d25ec3ianypis"]
+[gd_scene load_steps=5 format=3 uid="uid://d25ec3ianypis"]
 
 [ext_resource type="Texture2D" uid="uid://btx5ec0clurat" path="res://Art/arrow.png" id="1_a8646"]
 [ext_resource type="Script" path="res://Scripts/arrow.gd" id="1_xiwqc"]
+[ext_resource type="AudioStream" uid="uid://cjbcs3nomwysg" path="res://Audio/shoot.wav" id="3_uesrs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a2cot"]
 size = Vector2(30, 30)
@@ -23,3 +24,6 @@ target_position = Vector2(0, 0)
 collision_mask = 31
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_uesrs")

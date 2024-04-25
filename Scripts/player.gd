@@ -9,6 +9,12 @@ signal has_moved
 @export var player_type : ObjectType 
 @onready var sprite_2d = $Sprite2D
 @onready var marker = $Marker
+@onready var walk = $Walk
+@onready var push = $Push
+@onready var hit = $Hit
+@onready var treasure_pickup = $treasure_pickup
+@onready var level_transistion = $level_transistion
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -69,12 +75,16 @@ func move(direction: Vector2):
 			#will not need to check if movable once generic interaction function is implimented
 			
 			has_moved.emit()
+			walk.play()
 			move_object(direction, move_distance)
+			push.play()
 			object.move(direction) #would replace with generic interact() once implemented
 									#should be fine since I'd want the player to go onto the hazard, then die
 			return
 		elif (object.object_type == ObjectType.TRAP):
 			has_moved.emit()
+			walk.play()
+			hit.play()
 			move_object(direction, move_distance)
 			#Ensure anyone other then the rogue will die if they step on the trap
 			if (object_type != ObjectType.ROGUE):
@@ -82,22 +92,28 @@ func move(direction: Vector2):
 				
 		elif (object.object_type == ObjectType.ENEMY):
 			has_moved.emit()
+			walk.play()
+			hit.play()
 			move_object(direction, move_distance)
-			object.queue_free()
+			object.queue_free()		
 			
 		elif (object.object_type == ObjectType.TREASURE):
 			has_moved.emit()
+			walk.play()
 			move_object(direction, move_distance)
+			treasure_pickup.play()
 			
 		else:
 			return
 			
 	#space can be walked on, move 
 	has_moved.emit()
+	walk.play()
 	move_object(direction, move_distance)
 
 func _on_area_2d_area_entered(area):
 	var object = area.get_parent()
 	
 	if (object.object_type == ObjectType.ENEMY and self.object_type != ObjectType.FIGHTER):
+		hit.play()
 		player_death.emit()
