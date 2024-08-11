@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://djpfdkwdgl3ou"]
+
+[ext_resource type="Script" path="res://Scripts/fighter.gd" id="1_hd0me"]
+[ext_resource type="AudioStream" uid="uid://8wa5a1ijrlwl" path="res://Audio/walk.wav" id="2_3ienq"]
+[ext_resource type="Texture2D" uid="uid://bw41n0ds1h8fn" path="res://Art/fighter-sprite.png" id="2_y1sqx"]
+[ext_resource type="Texture2D" uid="uid://blovokb15dl21" path="res://Art/Cursor.png" id="3_cpc84"]
+[ext_resource type="AudioStream" uid="uid://bh4qhnegcgpgl" path="res://Audio/push.wav" id="3_tnl2x"]
+[ext_resource type="AudioStream" uid="uid://kyp4fs283udy" path="res://Audio/hit.wav" id="4_grd1y"]
+[ext_resource type="AudioStream" uid="uid://dj5w8y3kblvkr" path="res://Audio/treasure_pickup.wav" id="5_utxbm"]
+[ext_resource type="AudioStream" uid="uid://cvujsohfc5mxf" path="res://Audio/cant_move.wav" id="8_4tg4u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rv8t8"]
+size = Vector2(30, 30)
+
+[node name="fighter" type="Node2D"]
+z_index = 1
+script = ExtResource("1_hd0me")
+
+[node name="Appearance" type="Sprite2D" parent="."]
+texture = ExtResource("2_y1sqx")
+
+[node name="Marker" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -20)
+texture = ExtResource("3_cpc84")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rv8t8")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 31
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_3ienq")
+
+[node name="Push" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tnl2x")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_grd1y")
+
+[node name="treasure_pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_utxbm")
+
+[node name="level_transistion" type="AudioStreamPlayer2D" parent="."]
+
+[node name="cant_move" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_4tg4u")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

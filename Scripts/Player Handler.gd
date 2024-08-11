@@ -16,7 +16,11 @@ func _ready():
 		get_node(player_list[i].to_string()).player_death.connect(remove_player)
 		get_node(player_list[i].to_string()).has_moved.connect(end_player_turn)
 		
+	#fuck, need to fix active_player handling
 	active_player = player_list[player_index]
+	if Input.is_anything_pressed():
+		active_player.stop_ghost_movement()
+		
 	active_player.is_active = true
 	active_player.marker.show()
 	player_count = player_list.size()
@@ -43,7 +47,11 @@ func swap_player(increment : int):
 	if (active_player != null):
 		active_player.marker.hide()
 		active_player.is_active = false
+		
 		active_player = player_list[player_index]
+		if Input.is_anything_pressed():
+			active_player.stop_ghost_movement()
+			
 		active_player.is_active = true		
 		active_player.marker.show()		
 		
@@ -52,10 +60,9 @@ func handle_player_leaving():
 	remove_player()
 
 func remove_player():
-	print("Removing Player at _remove_player()")
 	var current_player = player_list[player_index]
 	player_list.remove_at(player_index)
-	current_player.queue_free()
+	#current_player.queue_free()
 	player_count -= 1
 	if player_count > 0:
 		swap_player(1)

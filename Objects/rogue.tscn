@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://b52uc3t44nyoe"]
+
+[ext_resource type="Script" path="res://Scripts/rogue.gd" id="1_g6gc7"]
+[ext_resource type="Texture2D" uid="uid://c2xhgu05noql3" path="res://Art/Rogue.png" id="1_pa4of"]
+[ext_resource type="Texture2D" uid="uid://blovokb15dl21" path="res://Art/Cursor.png" id="2_xon2v"]
+[ext_resource type="AudioStream" uid="uid://8wa5a1ijrlwl" path="res://Audio/walk.wav" id="3_8ldbv"]
+[ext_resource type="AudioStream" uid="uid://bh4qhnegcgpgl" path="res://Audio/push.wav" id="4_ffwhl"]
+[ext_resource type="AudioStream" uid="uid://kyp4fs283udy" path="res://Audio/hit.wav" id="5_3qrek"]
+[ext_resource type="AudioStream" uid="uid://dj5w8y3kblvkr" path="res://Audio/treasure_pickup.wav" id="6_urb04"]
+[ext_resource type="AudioStream" uid="uid://cvujsohfc5mxf" path="res://Audio/cant_move.wav" id="8_h78l7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6s37"]
+size = Vector2(30, 30)
+
+[node name="rogue" type="Node2D"]
+script = ExtResource("1_g6gc7")
+
+[node name="Appearance" type="Sprite2D" parent="."]
+texture = ExtResource("1_pa4of")
+
+[node name="Marker" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -20)
+texture = ExtResource("2_xon2v")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_b6s37")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 31
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8ldbv")
+
+[node name="Push" type="AudioStreamPlayer2D" parent="."]
+z_index = 1
+stream = ExtResource("4_ffwhl")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_3qrek")
+
+[node name="treasure_pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_urb04")
+
+[node name="level_transistion" type="AudioStreamPlayer2D" parent="."]
+
+[node name="cant_move" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_h78l7")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

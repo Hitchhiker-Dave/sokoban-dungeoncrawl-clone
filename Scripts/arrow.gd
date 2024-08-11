@@ -14,7 +14,7 @@ func _ready():
 	check_distance = 32
 	sprite_2d.look_at(facing)
 	ray_cast_2d.target_position = facing * check_distance
-	audio_stream_player_2d.play()
+	audio_stream_player_2d.play() #should probably play this from the skeleton
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

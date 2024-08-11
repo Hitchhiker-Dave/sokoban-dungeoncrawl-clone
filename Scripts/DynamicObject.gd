@@ -1,5 +1,5 @@
 extends Node2D 
-class_name DynamicObject 
+class_name DynamicObject #basically all the game pieces on the board
 
 enum ObjectType{
 	FIGHTER,
@@ -9,7 +9,8 @@ enum ObjectType{
 	TREASURE,
 	TRAP,
 	ENEMY,
-	PROJECTILE
+	PROJECTILE,
+	EXIT
 }
 
 #Parent Class for all moveable objects (players, boulders, enemies, etc.)
@@ -31,25 +32,9 @@ func _process(_delta):
 func get_is_movable():
 	return is_movable
 	
-func check_if_player(object : DynamicObject):
+func is_player(object : DynamicObject):
 	return (object.object_type == ObjectType.FIGHTER or object.object_type == ObjectType.ROGUE or object.object_type == ObjectType.MAGE)
 	
-func is_level_transition(direction: Vector2):
-	#Get current tile Vector2i
-	var current_tile : Vector2i = tile_map.local_to_map(global_position)
-	
-	#Get target tile Vector2i
-	var target_tile: Vector2i = Vector2i(
-		current_tile.x + direction.x,
-		current_tile.y + direction.y
-	)
-	#Get custom data layer from target tile
-	var tile_data: TileData = tile_map.get_cell_tile_data(0, target_tile)
-	
-	if (tile_data.get_custom_data("level_transition")):
-		return true
-	
-	return false
 
 func is_walkable(direction: Vector2, _distance: int):
 	#Get current tile Vector2i
@@ -70,14 +55,28 @@ func is_walkable(direction: Vector2, _distance: int):
 
 func move_object(direction: Vector2, distance: int):
 	#attempt to move the child to the desired direction, and return anything it collides with 
-	#get desired direction
+	#get desired position
 	var target_move_position = global_position + direction * distance
-	
 	#move object
 	if tween and tween.is_running():
 		return
 	tween = get_tree().create_tween()
-	tween.tween_property(self, "global_position", target_move_position, 0.16).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(self, "global_position", target_move_position, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	return
+	
+func move_failed(direction: Vector2, distance: int): #animation for failing to move
+	var original_position = global_position
+	var target_position = original_position + direction * (distance * 1/4)
+	var animation_speed = 0.1
+	
+	if tween and tween.is_running():
+		return
+	else:
+		#move object to position before moving back to starting point
+		#signal here for screen shake?
+		tween = get_tree().create_tween()
+		tween.tween_property(self, "global_position", target_position, animation_speed).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+		tween.tween_property(self, "global_position", original_position, animation_speed).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	return
 
 func get_collider(ray_cast: RayCast2D, direction : Vector2, distance : int):
@@ -89,17 +88,33 @@ func get_collider(ray_cast: RayCast2D, direction : Vector2, distance : int):
 		return ray_cast.get_collider()
 	return null
 
-func is_path_clear(object : DynamicObject, direction : Vector2, distance : int):
-	#use recursion to see if a series of objects are pressed against a wall
+func is_path_clear(colliding_object : DynamicObject, direction : Vector2, distance : int, ignore_traps = false):
+	#use recursion to see if a series of objects are pressed against a wall/immovable object
+	#check if space I want to move to is empty
+	if (colliding_object == null):
+		return colliding_object.is_walkable(direction, distance)
 	
-	if (!object.get_is_movable()):
+	#check if target object is movable in the first place
+	if (colliding_object.get_is_movable()):
+	
+		var new_object = colliding_object.get_collider(colliding_object.ray_cast_2d, direction, distance)
+		if (new_object == null):
+			return colliding_object.is_walkable(direction, distance)
+
+		return is_path_clear(new_object.get_parent(), direction, distance, ignore_traps)
+		
+	#object not movable but is a trap
+	if (colliding_object.object_type == ObjectType.TRAP and ignore_traps == true):
 		return true
 	
-	var new_object = object.get_collider(object.ray_cast_2d, direction, distance)
-	if (new_object == null):
-		return object.is_walkable(direction, distance)
+	#object is not movable
+	else: 
+		return false
 	
-	return is_path_clear(new_object.get_parent(), direction, distance)
+func play_sound(sound : AudioStreamPlayer2D, min_val : float, max_val : float):
+	sound.pitch_scale = randf_range(min_val, max_val)
+	sound.play()
+	return
 	
 func interaction(object : DynamicObject, direction : Vector2):
 	pass

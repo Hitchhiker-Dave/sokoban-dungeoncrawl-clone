@@ -19,6 +19,7 @@ func move(direction: Vector2):
 	
 	#check if area is walkable
 	if (!is_walkable(direction, move_distance)):
+		move_failed(direction, move_distance)
 		return
 		
 	#check for collisions
@@ -27,15 +28,27 @@ func move(direction: Vector2):
 	if (collider != null):
 		#collision found, determine what to do next based on what the object should do
 		var object = collider.get_parent()
+		ray_cast_2d.target_position = Vector2(0, 0) #ensure raycast doesn't trigger multiple times
+		
+		#disarm trap; do not remove, player clips into pushed rock otherwise
+		if (object.object_type == ObjectType.TRAP):
+			#disarm trap sound
+			move_object(direction, move_distance) #trap automatically despawns if anything enters it's hitbox
+			return
 		
 		#object is moveable, check if the object in front is as well
-		if (object.get_is_movable() and is_path_clear(object, direction, move_distance)):
-			move_object(direction, move_distance)
-			object.move(direction)
-		else:
-			return
+		if (object.get_is_movable()):
+			if (is_path_clear(object, direction, move_distance, true)):
+				move_object(direction, move_distance)
+				object.move(direction)
+				return
 			
+			else:
+				object.move_failed(direction, object.move_distance)
+				return
+			return
 	#space can be walked on, move player
+	#custom sound effect for rock moving here
 	move_object(direction, move_distance)
 	
 
