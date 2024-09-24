@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/treasure.gd" id="1_u3irx"]
 [ext_resource type="Texture2D" uid="uid://ceudo06joprbp" path="res://Art/treasure.png" id="2_wdxxl"]
-[ext_resource type="AudioStream" uid="uid://dj5w8y3kblvkr" path="res://Audio/treasure_pickup.wav" id="3_2e2gb"]
+[ext_resource type="AudioStream" uid="uid://dj5w8y3kblvkr" path="res://Audio/SFX/treasure_pickup.wav" id="3_2e2gb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubvon"]
 size = Vector2(28, 25)

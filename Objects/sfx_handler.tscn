@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://b1wjuk6t8uw0y"]
+
+[node name="sfx_handler" type="Node2D"]

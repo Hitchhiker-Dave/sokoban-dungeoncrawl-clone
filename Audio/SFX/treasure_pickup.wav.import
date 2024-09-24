@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dj5w8y3kblvkr"
-path="res://.godot/imported/treasure_pickup.wav-adef8d3fadad332d740305607f7b8feb.sample"
+path="res://.godot/imported/treasure_pickup.wav-0d1c79e84377c1e76cc5beecfffe7c10.sample"
 
 [deps]
 
-source_file="res://Audio/treasure_pickup.wav"
-dest_files=["res://.godot/imported/treasure_pickup.wav-adef8d3fadad332d740305607f7b8feb.sample"]
+source_file="res://Audio/SFX/treasure_pickup.wav"
+dest_files=["res://.godot/imported/treasure_pickup.wav-0d1c79e84377c1e76cc5beecfffe7c10.sample"]
 
 [params]
 
