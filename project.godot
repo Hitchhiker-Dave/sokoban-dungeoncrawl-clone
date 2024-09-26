@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneSwitcher="*res://Scripts/scene_switcher.gd"
+AudioHandler="*res://Objects/audio_handler.tscn"
 
 [display]
 

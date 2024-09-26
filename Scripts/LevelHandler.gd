@@ -12,6 +12,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	AudioHandler.toggle_music()
 	ui.show() #in case I forget to activate the ui after editing the level
 	if player_handler: #error guard since main menu and level select don't have this
 		player_handler.ready_for_next_level.connect(_end_of_level)

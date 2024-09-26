@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var next_level = "res://Environments/Levels/test_level.tscn"
 
+func _ready():
+	AudioHandler.play_music("Menu_Theme")
+
 func _on_start_menu_pressed():
 	SceneSwitcher.switch_scene("res://Environments/Menus/main_menu.tscn")
 

@@ -11,7 +11,7 @@ func _process(delta):
 
 #prevent rogue from being able to push rocks
 func push_object(object :DynamicObject, direction :Vector2, move_distance : int):
-	play_sound(cant_move, 0.9, 1.1)
+	AudioHandler.play_sfx("Cant_Move", 0.9, 1.1)
 	move_failed(direction, move_distance)
 	return
 
@@ -24,16 +24,17 @@ func object_collision(object :DynamicObject, direction :Vector2, move_distance :
 	#Rogue Runs into Trap -> Disarmed
 	if (object.object_type == ObjectType.TRAP):
 		has_moved.emit()
-		play_sound(walk, 0.9, 1.1)
-		play_sound(hit, 0.9, 1.1)
+		#play_sound(walk, 0.9, 1.1)
+		AudioHandler.play_sfx("Walk", 0.9, 1.1)
+		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		move_object(direction, move_distance)
 		return
 	
 	#Rogue Survives Running into ENEMY -> Dead Enemy
 	elif (object.object_type == ObjectType.ENEMY):
 		has_moved.emit()
-		play_sound(walk, 0.9, 1.1)
-		play_sound(hit, 0.9, 1.1)
+		AudioHandler.play_sfx("Walk", 0.9, 1.1)
+		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		object.queue_free()
 		move_object(direction, move_distance)
 		return
@@ -45,6 +46,5 @@ func _on_area_2d_area_entered(area):
 	
 	#Enemy/Arrow goes into Rogue -> Rogue Dies
 	if (object.object_type == ObjectType.ENEMY):
-		hit.play()
-		play_sound(hit, 0.9, 1.1)
+		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		handle_death()

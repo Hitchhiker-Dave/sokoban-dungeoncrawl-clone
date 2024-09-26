@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b0fdadnpl47nu"
-path="res://.godot/imported/sokoban_main_menu.wav-5b3910ba68a0d369482d5da57ee9cc13.sample"
+path="res://.godot/imported/main_menu_theme.wav-97dd60d87fbaad366b5ea4082b9b3131.sample"
 
 [deps]
 
-source_file="res://Audio/Music/sokoban_main_menu.wav"
-dest_files=["res://.godot/imported/sokoban_main_menu.wav-5b3910ba68a0d369482d5da57ee9cc13.sample"]
+source_file="res://Audio/Music/main_menu_theme.wav"
+dest_files=["res://.godot/imported/main_menu_theme.wav-97dd60d87fbaad366b5ea4082b9b3131.sample"]
 
 [params]
 

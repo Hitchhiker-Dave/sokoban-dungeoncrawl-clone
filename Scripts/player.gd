@@ -9,16 +9,7 @@ signal hit_level_transition
 signal player_death
 signal has_moved
 
-#Various Sound Effects
-@onready var cant_move = $cant_move
-@onready var sprite_2d = $Sprite2D
 @onready var marker = $Marker
-@onready var walk = $Walk
-@onready var push = $Push
-@onready var hit = $Hit
-@onready var treasure_pickup = $treasure_pickup
-@onready var level_transistion = $level_transistion
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,9 +52,9 @@ func _physics_process(delta):
 #generic function for pushing an object; i.e. allows fighter to push rocks, but not rogue and wizard
 func push_object(object: DynamicObject, direction : Vector2, move_distance : int):
 	has_moved.emit()
-	play_sound(walk, 0.9, 1.2)
+	AudioHandler.play_sfx("Walk", 0.9, 1.1)
 	move_object(direction, move_distance)
-	play_sound(push, 0.9, 1.2)
+	AudioHandler.play_sfx("Push", 0.9, 1.1)
 	object.move(direction)
 	return
 
@@ -75,7 +66,8 @@ func move(direction: Vector2):
 	
 	#check if area is walkable
 	if (!is_walkable(direction, move_distance)):
-		play_sound(cant_move, 0.9, 1.1)
+		#play_sound(cant_move, 0.9, 1.1)
+		AudioHandler.play_sfx("Cant_Move", 0.9, 1.1)
 		move_failed(direction, move_distance)
 		return
 		
@@ -91,6 +83,7 @@ func move(direction: Vector2):
 		if (object.object_type == ObjectType.EXIT):
 			move_object(direction, move_distance)
 			print("Level exit")
+			AudioHandler.play_sfx("Level_End", 1.0, 1.2)
 			handle_level_transistion()
 			return
 		
@@ -99,14 +92,14 @@ func move(direction: Vector2):
 				push_object(object, direction, move_distance)
 				return
 			else: 
-				play_sound(cant_move, 0.9, 1.1)
+				AudioHandler.play_sfx("Cant_Move", 0.9, 1.1)
 				move_failed(direction, move_distance)
 				return
 		
 		#Universal Object Interactions (I.e. same for all class/player types)	
 		elif (object.object_type == ObjectType.TREASURE):
 				has_moved.emit()
-				play_sound(walk, 0.9, 1.1)
+				AudioHandler.play_sfx("Walk", 0.9, 1.1)
 				move_object(direction, move_distance)
 				#treasure_pickup.play()
 				return
@@ -119,7 +112,7 @@ func move(direction: Vector2):
 	else:	
 		#space can be walked on, move 
 		has_moved.emit()
-		play_sound(walk, 0.9, 1.1)
+		AudioHandler.play_sfx("Walk", 0.9, 1.1)
 		self.move_object(direction, move_distance)
 		return
 	

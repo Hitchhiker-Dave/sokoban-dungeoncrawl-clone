@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://coejlovejponh"]
+
+[ext_resource type="Script" path="res://audio_handler.gd" id="1_lrvve"]
+[ext_resource type="AudioStream" uid="uid://b0fdadnpl47nu" path="res://Audio/Music/main_menu_theme.wav" id="2_v7s4p"]
+[ext_resource type="AudioStream" uid="uid://cvujsohfc5mxf" path="res://Audio/SFX/cant_move.wav" id="3_0xedl"]
+[ext_resource type="AudioStream" uid="uid://kyp4fs283udy" path="res://Audio/SFX/hit.wav" id="4_tno55"]
+[ext_resource type="AudioStream" uid="uid://dek3tqqx8aynn" path="res://Audio/SFX/level.wav" id="5_7xdih"]
+[ext_resource type="AudioStream" uid="uid://bh4qhnegcgpgl" path="res://Audio/SFX/push.wav" id="6_jvd0y"]
+[ext_resource type="AudioStream" uid="uid://dj5w8y3kblvkr" path="res://Audio/SFX/treasure_pickup.wav" id="7_ju71s"]
+[ext_resource type="AudioStream" uid="uid://8wa5a1ijrlwl" path="res://Audio/SFX/walk.wav" id="8_rtcku"]
+
+[node name="audio_handler" type="AudioStreamPlayer"]
+script = ExtResource("1_lrvve")
+
+[node name="Menu_Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_v7s4p")
+
+[node name="Cant_Move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0xedl")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tno55")
+
+[node name="Level_End" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7xdih")
+
+[node name="Push" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jvd0y")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jvd0y")
+
+[node name="Treasure_Pickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ju71s")
+
+[node name="Walk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_rtcku")

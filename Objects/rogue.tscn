@@ -1,13 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b52uc3t44nyoe"]
+[gd_scene load_steps=5 format=3 uid="uid://b52uc3t44nyoe"]
 
 [ext_resource type="Script" path="res://Scripts/rogue.gd" id="1_g6gc7"]
 [ext_resource type="Texture2D" uid="uid://c2xhgu05noql3" path="res://Art/Rogue.png" id="1_pa4of"]
 [ext_resource type="Texture2D" uid="uid://blovokb15dl21" path="res://Art/Cursor.png" id="2_xon2v"]
-[ext_resource type="AudioStream" uid="uid://8wa5a1ijrlwl" path="res://Audio/SFX/walk.wav" id="3_8ldbv"]
-[ext_resource type="AudioStream" uid="uid://bh4qhnegcgpgl" path="res://Audio/SFX/push.wav" id="4_ffwhl"]
-[ext_resource type="AudioStream" uid="uid://kyp4fs283udy" path="res://Audio/SFX/hit.wav" id="5_3qrek"]
-[ext_resource type="AudioStream" uid="uid://dj5w8y3kblvkr" path="res://Audio/SFX/treasure_pickup.wav" id="6_urb04"]
-[ext_resource type="AudioStream" uid="uid://cvujsohfc5mxf" path="res://Audio/SFX/cant_move.wav" id="8_h78l7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6s37"]
 size = Vector2(30, 30)
@@ -34,23 +29,5 @@ target_position = Vector2(0, 0)
 collision_mask = 31
 collide_with_areas = true
 collide_with_bodies = false
-
-[node name="Walk" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_8ldbv")
-
-[node name="Push" type="AudioStreamPlayer2D" parent="."]
-z_index = 1
-stream = ExtResource("4_ffwhl")
-
-[node name="Hit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_3qrek")
-
-[node name="treasure_pickup" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_urb04")
-
-[node name="level_transistion" type="AudioStreamPlayer2D" parent="."]
-
-[node name="cant_move" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_h78l7")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

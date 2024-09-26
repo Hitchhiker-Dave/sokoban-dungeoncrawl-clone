@@ -4,7 +4,6 @@ extends DynamicObject
 var facing : Vector2
 @onready var ray_cast_2d = $RayCast2D
 @onready var sprite_2d = $Sprite2D
-@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 var check_distance : int
 
 # Called when the node enters the scene tree for the first time.
@@ -14,7 +13,7 @@ func _ready():
 	check_distance = 32
 	sprite_2d.look_at(facing)
 	ray_cast_2d.target_position = facing * check_distance
-	audio_stream_player_2d.play() #should probably play this from the skeleton
+	AudioHandler.play_sfx("Shoot", 0.9, 1.1)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
