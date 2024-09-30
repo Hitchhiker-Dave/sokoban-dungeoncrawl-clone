@@ -22,8 +22,5 @@ func play_music(song : NodePath):
 		volume_db = music_volume
 		play()
 
-func toggle_music():
-	if stream:
-		stream_paused = true
-	else:
-		stream_paused = false
+func turn_off_music():
+	stream = null

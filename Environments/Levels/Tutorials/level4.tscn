@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ry6523sf1jic"]
+[gd_scene load_steps=15 format=3 uid="uid://ry6523sf1jic"]
 
 [ext_resource type="Script" path="res://Scripts/LevelHandler.gd" id="1_rbeod"]
 [ext_resource type="PackedScene" uid="uid://b3binwm225m0k" path="res://Objects/level_exit.tscn" id="2_1qrv3"]
@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://7sbuyh4r3bii" path="res://Objects/trap.tscn" id="7_orhfu"]
 [ext_resource type="PackedScene" uid="uid://dbbsctcxd21rx" path="res://Objects/treasure.tscn" id="8_iob67"]
 [ext_resource type="PackedScene" uid="uid://bi3clifdhppin" path="res://Objects/rock.tscn" id="9_5swys"]
+[ext_resource type="Script" path="res://Scripts/Treasure Handler.gd" id="9_lty2p"]
 [ext_resource type="PackedScene" uid="uid://b52uc3t44nyoe" path="res://Objects/rogue.tscn" id="11_slm42"]
 [ext_resource type="PackedScene" uid="uid://djpfdkwdgl3ou" path="res://Objects/fighter.tscn" id="12_5upn7"]
+[ext_resource type="PackedScene" uid="uid://bgdbr2f4waw4l" path="res://Environments/Menus/level_cleared_screen.tscn" id="13_vnko8"]
 
 [node name="Level4" type="Node2D"]
 script = ExtResource("1_rbeod")
@@ -39,6 +41,12 @@ script = ExtResource("5_eefm8")
 [node name="Skeleton" parent="Enemy Handler" instance=ExtResource("6_5qjy5")]
 position = Vector2(240, 176)
 
+[node name="Treasure Handler" type="Node2D" parent="."]
+script = ExtResource("9_lty2p")
+
+[node name="Treasure" parent="Treasure Handler" instance=ExtResource("8_iob67")]
+position = Vector2(336, 240)
+
 [node name="Trap" parent="." instance=ExtResource("7_orhfu")]
 position = Vector2(272, 176)
 
@@ -47,9 +55,6 @@ position = Vector2(336, 176)
 
 [node name="Rock2" parent="." instance=ExtResource("9_5swys")]
 position = Vector2(336, 208)
-
-[node name="Treasure" parent="." instance=ExtResource("8_iob67")]
-position = Vector2(336, 240)
 
 [node name="UI" type="Control" parent="."]
 z_index = 1
@@ -105,22 +110,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Skip Level"
 
-[node name="End Screen" type="Control" parent="UI"]
-visible = false
-z_index = 1
-anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 360.0
-
-[node name="TextureRect" type="ColorRect" parent="UI/End Screen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.00392157, 0.00392157, 0.00392157, 0.498039)
-
 [node name="Dev Hints" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
@@ -171,6 +160,10 @@ size_flags_vertical = 4
 layout_mode = 2
 text = "their own strengths"
 horizontal_alignment = 1
+
+[node name="level_cleared_screen" parent="UI" instance=ExtResource("13_vnko8")]
+visible = false
+layout_mode = 1
 
 [connection signal="player_moved" from="Player Handler" to="." method="_on_player_handler_player_moved"]
 [connection signal="pressed" from="UI/Menu/CenterContainer/HBoxContainer/Menu_Level_Select_Button" to="." method="_on_menu_level_select_button_pressed"]

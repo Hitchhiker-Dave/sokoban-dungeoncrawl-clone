@@ -3,26 +3,53 @@ extends Node2D
 @onready var level_select = "res://Environments/Menus/level_select.tscn"
 @onready var current_level : String
 @export var next_level : String
-@onready var menu = $UI/Menu
-@onready var ui = $UI
-@onready var end_screen = $"UI/End Screen"
-@onready var player_handler = $"Player Handler"
-@onready var enemy_handler = $"Enemy Handler"
-@onready var is_paused = false
+@onready var menu := $UI/Menu
+@onready var ui := $UI
+@onready var end_screen := $"UI/End Screen"
+@onready var player_handler := $"Player Handler"
+@onready var enemy_handler := $"Enemy Handler"
+@onready var is_paused := false
+@onready var level_cleared_screen := $UI/level_cleared_screen
+@onready var is_level_cleared := false
+@onready var treasure_handler = $"Treasure Handler"
+
+#end of level handling for pc scoring
+var pcs_alive : int
+var total_pcs : int
+
+#end of level handling for treasure scoring
+var treasure_looted : int
+var total_treasure : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	AudioHandler.toggle_music()
+	AudioHandler.turn_off_music() #temp until main game music is made
 	ui.show() #in case I forget to activate the ui after editing the level
-	if player_handler: #error guard since main menu and level select don't have this
-		player_handler.ready_for_next_level.connect(_end_of_level)
+	
+	treasure_looted = 0
+	total_treasure = treasure_handler.get_total_treasure()
+	treasure_handler.treasure_looted.connect(update_treasure_looted)
+	
+	pcs_alive = 0
+	total_pcs = player_handler.get_player_count()
+	player_handler.level_exited.connect(update_players_exited_level)
+	player_handler.ready_for_next_level.connect(_end_of_level)
+		
+	level_cleared_screen.trigger_level_select.connect(go_to_level_select)
+	level_cleared_screen.trigger_level_restart.connect(_on_menu_restart_button_pressed)
+	level_cleared_screen.trigger_next_level.connect(go_to_next_level)
+	
+	#manual update to guarentee the max score counts are displayed
+	level_cleared_screen.update_player_score(pcs_alive, total_pcs)
+	level_cleared_screen.update_treasure_score(treasure_looted, total_treasure)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("Restart"):
 		restart_level()
 		
-	if Input.is_action_just_pressed("ui_menu"):
+	#Pause Menu Handling; Does not activate if dealing with end of level menus
+	if Input.is_action_just_pressed("ui_menu") and !is_level_cleared:
 		if is_paused:
 			menu.hide()
 			player_handler.toggle_activity()
@@ -56,6 +83,17 @@ func _on_player_handler_player_moved():
 	player_handler.toggle_activity()
 	enemy_handler.enemy_turn()
 	player_handler.toggle_activity()
-
+	
+func update_players_exited_level():
+	pcs_alive += 1
+	level_cleared_screen.update_player_score(pcs_alive, total_pcs)
+	
+func update_treasure_looted():
+	treasure_looted += 1
+	level_cleared_screen.update_treasure_score(treasure_looted, total_treasure)
+	
 func _end_of_level():
-	go_to_next_level()
+	#no need to disable player movement, all players should be dead or dealt with
+	is_level_cleared = true
+	level_cleared_screen.update_display()
+	level_cleared_screen.show()

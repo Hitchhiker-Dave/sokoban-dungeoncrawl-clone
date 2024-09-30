@@ -7,6 +7,7 @@ extends Node2D
 @onready var player_reached_level_transition = false
 signal ready_for_next_level
 signal player_moved
+signal level_exited
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,7 +17,7 @@ func _ready():
 		get_node(player_list[i].to_string()).player_death.connect(remove_player)
 		get_node(player_list[i].to_string()).has_moved.connect(end_player_turn)
 		
-	#fuck, need to fix active_player handling
+	#active_player handling between scene transistions
 	active_player = player_list[player_index]
 	if Input.is_anything_pressed():
 		active_player.stop_ghost_movement()
@@ -57,6 +58,7 @@ func swap_player(increment : int):
 		
 func handle_player_leaving():
 	player_reached_level_transition = true
+	level_exited.emit()
 	remove_player()
 
 func remove_player():
@@ -81,3 +83,5 @@ func toggle_activity():
 func end_player_turn():
 	player_moved.emit()
 	
+func get_player_count():
+	return player_count

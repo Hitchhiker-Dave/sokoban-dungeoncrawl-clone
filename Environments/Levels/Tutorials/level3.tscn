@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://xvinva5rvcc4"]
+[gd_scene load_steps=13 format=3 uid="uid://xvinva5rvcc4"]
 
 [ext_resource type="Script" path="res://Scripts/LevelHandler.gd" id="1_di7rx"]
 [ext_resource type="PackedScene" uid="uid://dcewehjvldfkq" path="res://Environments/Levels/tile_map.tscn" id="2_lo8w3"]
@@ -7,9 +7,11 @@
 [ext_resource type="Script" path="res://Scripts/Enemy Handler.gd" id="5_j3odr"]
 [ext_resource type="Theme" uid="uid://6g50mxodmcvl" path="res://UI Styles/menu_buttons.tres" id="6_cllxw"]
 [ext_resource type="PackedScene" uid="uid://7sbuyh4r3bii" path="res://Objects/trap.tscn" id="7_pm1hd"]
+[ext_resource type="Script" path="res://Scripts/Treasure Handler.gd" id="8_n8wr5"]
 [ext_resource type="PackedScene" uid="uid://dbbsctcxd21rx" path="res://Objects/treasure.tscn" id="8_uybii"]
 [ext_resource type="PackedScene" uid="uid://b52uc3t44nyoe" path="res://Objects/rogue.tscn" id="9_i1kut"]
 [ext_resource type="PackedScene" uid="uid://djpfdkwdgl3ou" path="res://Objects/fighter.tscn" id="10_cjufq"]
+[ext_resource type="PackedScene" uid="uid://bgdbr2f4waw4l" path="res://Environments/Menus/level_cleared_screen.tscn" id="11_xvgjj"]
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_di7rx")
@@ -34,14 +36,17 @@ position = Vector2(240, 208)
 [node name="Enemy Handler" type="Node2D" parent="."]
 script = ExtResource("5_j3odr")
 
+[node name="Treasure Handler" type="Node2D" parent="."]
+script = ExtResource("8_n8wr5")
+
+[node name="Treasure" parent="Treasure Handler" instance=ExtResource("8_uybii")]
+position = Vector2(368, 272)
+
 [node name="Trap" parent="." instance=ExtResource("7_pm1hd")]
 position = Vector2(304, 176)
 
 [node name="Trap2" parent="." instance=ExtResource("7_pm1hd")]
 position = Vector2(368, 240)
-
-[node name="Treasure" parent="." instance=ExtResource("8_uybii")]
-position = Vector2(368, 272)
 
 [node name="UI" type="Control" parent="."]
 z_index = 1
@@ -97,22 +102,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Skip Level"
 
-[node name="End Screen" type="Control" parent="UI"]
-visible = false
-z_index = 1
-anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 360.0
-
-[node name="TextureRect" type="ColorRect" parent="UI/End Screen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.00392157, 0.00392157, 0.00392157, 0.498039)
-
 [node name="Dev Hints" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
@@ -163,6 +152,10 @@ size_flags_vertical = 4
 layout_mode = 2
 text = "Characters"
 horizontal_alignment = 1
+
+[node name="level_cleared_screen" parent="UI" instance=ExtResource("11_xvgjj")]
+visible = false
+layout_mode = 1
 
 [connection signal="player_moved" from="Player Handler" to="." method="_on_player_handler_player_moved"]
 [connection signal="pressed" from="UI/Menu/CenterContainer/HBoxContainer/Menu_Level_Select_Button" to="." method="_on_menu_level_select_button_pressed"]
