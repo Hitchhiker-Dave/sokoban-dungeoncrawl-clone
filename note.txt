@@ -2,6 +2,5 @@ Color Palette is Pico-8 Secret Palette:  https://lospec.com/palette-list/pico-8-
 For project the topic itself should say something about video games (I can still mash it up with one of the other topics)
 - I.e. how video games (the medium) effect remediation, or embodiment; gonna have to brainstorm
 
-Note: Fix both Return to Level Select in Level x and Instant Exit issue by making a seperate menu that exists for each level
-with options to return to level select or skip to the next level, and pressing a button toggles it's invisiblity
--Can also do the same with a "End of Level" report
+Note: Re Export Audio Back at full/ 100% volume at LMMS, then add audio settings
+	-Look up how to do audio settings 

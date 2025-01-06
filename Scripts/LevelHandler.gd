@@ -12,6 +12,7 @@ extends Node2D
 @onready var level_cleared_screen := $UI/level_cleared_screen
 @onready var is_level_cleared := false
 @onready var treasure_handler = $"Treasure Handler"
+@onready var player_turn := true
 
 #end of level handling for pc scoring
 var pcs_alive : int
@@ -23,7 +24,7 @@ var total_treasure : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	AudioHandler.turn_off_music() #temp until main game music is made
+	AudioHandler.play_music("Level_Music1") #Play Level Music
 	ui.show() #in case I forget to activate the ui after editing the level
 	
 	treasure_looted = 0
@@ -48,7 +49,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Restart"):
 		restart_level()
 		
-	#Pause Menu Handling; Does not activate if dealing with end of level menus
+	#Pause Menu Handling; Does not activate if dealing with end of level menusAudioHandler
 	if Input.is_action_just_pressed("ui_menu") and !is_level_cleared:
 		if is_paused:
 			menu.hide()
@@ -97,3 +98,4 @@ func _end_of_level():
 	is_level_cleared = true
 	level_cleared_screen.update_display()
 	level_cleared_screen.show()
+	AudioHandler.turn_off_music()

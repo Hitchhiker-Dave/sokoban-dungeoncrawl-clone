@@ -8,7 +8,7 @@ var check_distance : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	object_type = ObjectType.ENEMY
+	object_type = ObjectType.PROJECTILE
 	move_distance = 16
 	check_distance = 32
 	sprite_2d.look_at(facing)
@@ -16,8 +16,8 @@ func _ready():
 	AudioHandler.play_sfx("Shoot", 0.9, 1.1)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if (not is_walkable(facing, move_distance)):
+func _process(delta):
+	if (not is_walkable(Vector2.ZERO, move_distance)):
 		#collided with wall
 		queue_free()
 		return
@@ -27,7 +27,8 @@ func _process(_delta):
 	if (collider != null):
 		var object = collider.get_parent()
 			
+		#Delete Arrow if it hits rock
 		if (object.object_type == ObjectType.ENVIRONMENT):
 			queue_free()
 			
-	position += facing * move_distance
+	position += facing * move_distance 

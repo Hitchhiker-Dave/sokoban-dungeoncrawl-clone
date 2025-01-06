@@ -31,7 +31,7 @@ func _physics_process(delta):
 	#check if player is controlling this paticular character
 	if is_active: #if true, you can move the player
 		# basic tile movement
-		marker.position.y = 2 * roundf(sin(Time.get_ticks_msec() * delta * 0.9)) - 20
+		marker.position.y = 2 * roundf(sin(Time.get_ticks_msec() * delta * 0.9)) - 24
 		
 		#problem: is_action_pressed makes it so a player piece inherits the movement of a previous one during a level transition
 		if (Input.is_action_just_pressed("wait")):
@@ -69,6 +69,7 @@ func move(direction: Vector2):
 		#play_sound(cant_move, 0.9, 1.1)
 		AudioHandler.play_sfx("Cant_Move", 0.9, 1.1)
 		move_failed(direction, move_distance)
+		has_moved.emit() #attempted to move, advance to enemy turn
 		return
 		
 	#check for collisions

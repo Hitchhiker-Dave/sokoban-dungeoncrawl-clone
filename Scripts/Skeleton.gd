@@ -5,9 +5,11 @@ extends Enemy
 @onready var ray_cast = $RayCast2D
 @onready var sprite = $Sprite2D
 @onready var warning = $Warning
+@onready var timer = $Timer
+
 @onready var target_direction 
-@onready var last_spotted
-@onready var target_spotted
+@onready var last_spotted : Vector2
+@onready var just_fired := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,30 +17,33 @@ func _ready():
 	is_movable = false
 
 func _process(_delta):
-	var target_direction = search_for_target(ray_cast)
+	target_direction = search_for_target(ray_cast)
 	
 	if (target_direction != null): #player was spotted on a cardinal
 		warning.visible = true
-		#these two variables existing are 100% nessassary for firing arrows on the next player turn
-		#(could patch into the chaser enemy too)
-		target_spotted = true
 		last_spotted = target_direction 
 		
-		if target_direction.x > 0: 
-			sprite.flip_h = false
+		if target_direction.x < 0: 
+			sprite.flip_h = true
 		
 		else: 
-			sprite.flip_h = true
+			sprite.flip_h = false
+	elif just_fired:
+		warning.visible = true
 	else:
-		target_spotted = false
 		warning.visible = false		
 
 #do turn when enemy handler says so
 func do_turn():
-	print("Enemy Turn, target direction: ", target_direction)
-	if(target_spotted):
+	#print("Enemy Turn, target direction: ", target_direction)
+	if(target_direction != null):
 		var instance = arrow.instantiate()
 		instance.facing = last_spotted
 		add_sibling(instance)
 		instance.position = global_position
 		instance.tile_map = tile_map
+		timer.start()
+		just_fired = true
+
+func _on_timer_timeout():
+	just_fired = false

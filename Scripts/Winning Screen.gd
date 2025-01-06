@@ -3,8 +3,7 @@ extends Node2D
 @onready var main_menu = "res://Environments/Menus/main_menu.tscn"
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	AudioHandler.play_music("Menu_Theme")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

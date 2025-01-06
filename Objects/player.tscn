@@ -16,7 +16,7 @@ texture = ExtResource("2_8n0e2")
 
 [node name="Marker" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(0, -20)
+position = Vector2(0, -24)
 texture = ExtResource("3_rs738")
 
 [node name="Area2D" type="Area2D" parent="."]

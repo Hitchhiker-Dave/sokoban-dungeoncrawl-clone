@@ -45,6 +45,6 @@ func _on_area_2d_area_entered(area):
 	var object = area.get_parent()
 	
 	#Enemy/Arrow goes into Rogue -> Rogue Dies
-	if (object.object_type == ObjectType.ENEMY):
+	if (object.object_type == ObjectType.ENEMY or object.object_type == ObjectType.PROJECTILE):
 		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		handle_death()

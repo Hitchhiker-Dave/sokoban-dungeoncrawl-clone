@@ -15,6 +15,7 @@ texture = ExtResource("1_pa4of")
 
 [node name="Marker" type="Sprite2D" parent="."]
 visible = false
+z_index = 1
 position = Vector2(0, -20)
 texture = ExtResource("2_xon2v")
 
