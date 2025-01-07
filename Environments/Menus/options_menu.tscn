@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bm7rtp04nj0rs"]
 
-[ext_resource type="Script" path="res://Objects/options_menu.gd" id="1_je1l2"]
-[ext_resource type="Script" path="res://Objects/audio_menu.gd" id="2_fkxte"]
+[ext_resource type="Script" path="res://Scripts/options_menu.gd" id="1_je1l2"]
+[ext_resource type="Script" path="res://Scripts/audio_menu.gd" id="2_fkxte"]
 [ext_resource type="Theme" uid="uid://ctbm7rt0bnens" path="res://UI Styles/normal_text.tres" id="2_uo35m"]
 
 [node name="options_menu" type="Control"]
@@ -10,6 +10,7 @@ anchors_preset = 0
 script = ExtResource("1_je1l2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0.0666667, 0.113725, 0.207843, 1)

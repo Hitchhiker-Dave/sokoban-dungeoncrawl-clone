@@ -84,6 +84,7 @@ size_flags_vertical = 4
 text = "Skip Level"
 
 [node name="level_cleared_screen" parent="UI" instance=ExtResource("7_agra0")]
+visible = false
 layout_mode = 1
 
 [connection signal="player_moved" from="Player Handler" to="." method="_on_player_handler_player_moved"]
