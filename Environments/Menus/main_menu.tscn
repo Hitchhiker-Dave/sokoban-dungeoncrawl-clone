@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqjnhylsqhl6s"]
+[gd_scene load_steps=4 format=3 uid="uid://cqjnhylsqhl6s"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_ka8uy"]
+[ext_resource type="Texture2D" uid="uid://y68ihhlvhs67" path="res://Art/background.png" id="2_htcw2"]
 [ext_resource type="Theme" uid="uid://6g50mxodmcvl" path="res://UI Styles/menu_buttons.tres" id="2_paqif"]
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource("1_ka8uy")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 640.0
-offset_bottom = 360.0
-color = Color(0.0666667, 0.113725, 0.207843, 1)
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = ExtResource("2_htcw2")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
