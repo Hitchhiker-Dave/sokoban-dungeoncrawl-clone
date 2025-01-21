@@ -2,5 +2,5 @@ Color Palette is Pico-8 Secret Palette:  https://lospec.com/palette-list/pico-8-
 For project the topic itself should say something about video games (I can still mash it up with one of the other topics)
 - I.e. how video games (the medium) effect remediation, or embodiment; gonna have to brainstorm
 
-Note: Re Export Audio Back at full/ 100% volume at LMMS, then add audio settings
-	-Look up how to do audio settings 
+To Do:
+-Make Unique Levels based on two or more mechanics interacting (see list in level notes)

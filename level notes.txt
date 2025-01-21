@@ -3,3 +3,21 @@ Tutorial Levels (1-)
 2: Teaches How to Move Rocks
 3: Teaches that different characters have different uses, the rogue's use is that they disarms traps
 4: Teachs that the fighter blocks arrows; player MUST learn how to switch characters
+	-Could I make a simpler version w/out the skeleton as a simpler tutorial, then reuse this level later?
+
+
+Unique Level Pairing Ideas
+Trap,Boulder : Character Swap Tutorial (replacement for Tutorial Level 4)
+Trap,Skeleton
+Trap,Golem
+Trap,Rogue : Intro to Rogue Tutorial
+Trap,Fighter : Intro to Traps Tutorial (Before Rogue)
+Boulder,Skeleton
+Boulder,Golem
+Boulder,Rogue : Intro to Rogue Tutorial
+Boulder,Fighter : Tutorial Level 2
+Skeleton,Golem
+Skeleton,Rogue
+Skeleton,Fighter
+Golem,Rogue
+Golem,Fighter
