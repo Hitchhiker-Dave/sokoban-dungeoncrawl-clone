@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgdbr2f4waw4l"]
+[gd_scene load_steps=5 format=3 uid="uid://bgdbr2f4waw4l"]
 
 [ext_resource type="Script" path="res://Scripts/level_cleared_screen.gd" id="1_thnjb"]
 [ext_resource type="Theme" uid="uid://6g50mxodmcvl" path="res://UI Styles/menu_buttons.tres" id="2_bw42p"]
+[ext_resource type="Texture2D" uid="uid://y68ihhlvhs67" path="res://Art/background.png" id="2_weaw2"]
 [ext_resource type="Theme" uid="uid://ctbm7rt0bnens" path="res://UI Styles/normal_text.tres" id="3_low31"]
 
 [node name="level_cleared_screen" type="Control"]
@@ -13,17 +14,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_thnjb")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 360.0
-color = Color(0.0666667, 0.113725, 0.207843, 1)
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = ExtResource("2_weaw2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 48.0
+offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
 
