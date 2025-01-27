@@ -1,21 +1,32 @@
-Tutorial Levels (1-)
+Tutorial Levels (Basic Movement, Controls, and the Idea different characters have different roles)
 1: Teaches Basic Movement
-2: Teaches How to Move Rocks
-3: Teaches that different characters have different uses, the rogue's use is that they disarms traps
-4: Teachs that the fighter blocks arrows; player MUST learn how to switch characters
-	-Could I make a simpler version w/out the skeleton as a simpler tutorial, then reuse this level later?
+2: Teaches that Fighter can Move Rocks and dies to Traps
+3: Teaches that Rouge can't Move Rocks and dies to Traps
+4: Player MUST learn how to switch characters
 
+Basic Levels (Psuedo Tutorials /introducing how the Enemies work)
+1: Teach that Skeleton kills Rogue, but Skeleton can't fight in melee
+2: Teach that Fighter deals with Skeleton easiy
+7&8: how to deal with charger (maybe the charger should be saved for advanced levels)
 
-Unique Level Pairing Ideas
-Trap,Boulder : Character Swap Tutorial (replacement for Tutorial Level 4)
+Advanced Levels (Player should know how the basic mechanics, enemies, and objects work)
+The Demo / Showcase Level (originally Tutorial level 4 )
+	-the one that shows the knight, rogue, skeleton, boulder, and trap
+	-"the one that says "each character has their own strength"
+
+Unique Level Pairing Ideas (x/14)
+Tx = Tutorial Level x, Bx = Basic Level x, Ax = Advance Level
+C = Complete, X : In Progress
+----------------------------------------------------------------
+C : Trap,Boulder : Character Swap Tutorial level T4
 Trap,Skeleton
 Trap,Golem
-Trap,Rogue : Intro to Rogue Tutorial
-Trap,Fighter : Intro to Traps Tutorial (Before Rogue)
+C : Trap,Rogue : Intro to Rogue Tutorial -> level T3
+C : Trap,Fighter : level T3
 Boulder,Skeleton
 Boulder,Golem
-Boulder,Rogue : Intro to Rogue Tutorial
-Boulder,Fighter : Tutorial Level 2
+C : Boulder,Rogue : Intro to Rogue Tutorial -> level T3
+C : Boulder,Fighter : level T2
 Skeleton,Golem
 Skeleton,Rogue
 Skeleton,Fighter

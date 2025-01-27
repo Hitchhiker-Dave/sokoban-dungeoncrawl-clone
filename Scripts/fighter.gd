@@ -13,7 +13,6 @@ func _process(_delta):
 func object_collision(object :DynamicObject, direction :Vector2, move_distance : int):
 	#Fighter Runs into Trap -> Dead ()
 	if (object.object_type == ObjectType.TRAP):
-		has_moved.emit()
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
 		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		move_object(direction, move_distance)
@@ -22,7 +21,6 @@ func object_collision(object :DynamicObject, direction :Vector2, move_distance :
 	
 	#Fighter Survives Running into ENEMY -> Dead Enemy
 	elif (object.object_type == ObjectType.ENEMY):
-		has_moved.emit()
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
 		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		object.queue_free()

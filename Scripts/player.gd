@@ -35,23 +35,26 @@ func _physics_process(delta):
 		
 		#problem: is_action_pressed makes it so a player piece inherits the movement of a previous one during a level transition
 		if (Input.is_action_just_pressed("wait")):
-			has_moved.emit() #basically forfiet a turn
+			post_player_move() #basically forfiet a turn
 		if ((Input.is_action_just_pressed("Move Up") or
 			Input.is_action_pressed("Move Up"))):
 			move(Vector2.UP)
+			post_player_move()
 		if ((Input.is_action_just_pressed("Move Down") or
 			Input.is_action_pressed("Move Down"))):
 			move(Vector2.DOWN)
+			post_player_move()
 		if ((Input.is_action_just_pressed("Move Left") or
 			Input.is_action_pressed("Move Left"))):
 			move(Vector2.LEFT)
+			post_player_move()
 		if (Input.is_action_just_pressed("Move Right") or
 			Input.is_action_pressed("Move Right")):
 			move(Vector2.RIGHT)
+			post_player_move()
 
 #generic function for pushing an object; i.e. allows fighter to push rocks, but not rogue and wizard
 func push_object(object: DynamicObject, direction : Vector2, move_distance : int):
-	has_moved.emit()
 	AudioHandler.play_sfx("Walk", 0.9, 1.1)
 	move_object(direction, move_distance)
 	AudioHandler.play_sfx("Push", 0.9, 1.1)
@@ -69,7 +72,6 @@ func move(direction: Vector2):
 		#play_sound(cant_move, 0.9, 1.1)
 		AudioHandler.play_sfx("Cant_Move", 0.9, 1.1)
 		move_failed(direction, move_distance)
-		has_moved.emit() #attempted to move, advance to enemy turn
 		return
 		
 	#check for collisions
@@ -99,10 +101,9 @@ func move(direction: Vector2):
 		
 		#Universal Object Interactions (I.e. same for all class/player types)	
 		elif (object.object_type == ObjectType.TREASURE):
-				has_moved.emit()
+				
 				AudioHandler.play_sfx("Walk", 0.9, 1.1)
 				move_object(direction, move_distance)
-				#treasure_pickup.play()
 				return
 		
 		#Specific Object interactions based on class/player type
@@ -112,7 +113,6 @@ func move(direction: Vector2):
 	
 	else:	
 		#space can be walked on, move 
-		has_moved.emit()
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
 		self.move_object(direction, move_distance)
 		return
@@ -124,6 +124,13 @@ func handle_death():
 func handle_level_transistion():
 	hit_level_transition.emit() #move to level exit
 	queue_free()
+	
+func post_player_move():
+	if (just_moved):
+		just_moved = false
+		has_moved.emit()
+	
+	pass
 	
 func object_collision(object : DynamicObject, direction : Vector2, move_distance : int):
 	#old spagetti code from legacy move() code kept for reference

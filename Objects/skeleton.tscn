@@ -18,10 +18,10 @@ visible = false
 position = Vector2(0, -25)
 texture = ExtResource("3_vhhx4")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
 collision_mask = 31
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_45x83")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

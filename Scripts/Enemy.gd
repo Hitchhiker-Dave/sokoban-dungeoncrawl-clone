@@ -14,6 +14,14 @@ func _ready():
 func _process(_delta):
 	pass
 
+func check_if_in_melee(ray_cast_2d : RayCast2D, direction : Vector2):
+	ray_cast_2d.force_raycast_update()
+	var collider = get_collider(ray_cast_2d, direction, 32)
+		
+	if (collider != null):
+		return true
+	return false
+
 func search_for_target(ray_cast_2d : RayCast2D):
 	#looks for direction of player and returns ids
 	for i in range(4):

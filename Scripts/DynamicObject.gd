@@ -2,6 +2,7 @@ extends Node2D
 class_name DynamicObject #basically all the game pieces on the board
 
 @onready var animation_speed := .2 #normal = 0.2, small numbers is faster
+@onready var just_moved := false
 
 enum ObjectType{
 	FIGHTER,
@@ -62,6 +63,9 @@ func move_object(direction: Vector2, distance: int):
 	#move object
 	if tween and tween.is_running():
 		return
+	elif (tween and tween.is_running() == false): #finished moving
+		just_moved = true
+		
 	tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", target_move_position, animation_speed).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
 	return
@@ -72,13 +76,14 @@ func move_failed(direction: Vector2, distance: int): #animation for failing to m
 	
 	if tween and tween.is_running():
 		return
-	else:
-		#move object to position before moving back to starting point
-		#signal here for screen shake?
-		tween = get_tree().create_tween()
-		tween.tween_property(self, "global_position", target_position, animation_speed / 2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
-		tween.tween_property(self, "global_position", original_position, animation_speed / 2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT_IN)
+	elif (tween and tween.is_running() == false): #finished moving
+		just_moved = true
 		
+	#move object to position before moving back to starting point
+	#signal here for screen shake?
+	tween = get_tree().create_tween()
+	tween.tween_property(self, "global_position", target_position, animation_speed / 2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "global_position", original_position, animation_speed / 2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT_IN)
 	return
 
 func get_collider(ray_cast: RayCast2D, direction : Vector2, distance : int):

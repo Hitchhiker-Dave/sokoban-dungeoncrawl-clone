@@ -23,7 +23,6 @@ func object_collision(object :DynamicObject, direction :Vector2, move_distance :
 	
 	#Rogue Runs into Trap -> Disarmed
 	if (object.object_type == ObjectType.TRAP):
-		has_moved.emit()
 		#play_sound(walk, 0.9, 1.1)
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
 		AudioHandler.play_sfx("Hit", 0.9, 1.1)
@@ -32,7 +31,6 @@ func object_collision(object :DynamicObject, direction :Vector2, move_distance :
 	
 	#Rogue Survives Running into ENEMY -> Dead Enemy
 	elif (object.object_type == ObjectType.ENEMY):
-		has_moved.emit()
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
 		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		object.queue_free()
