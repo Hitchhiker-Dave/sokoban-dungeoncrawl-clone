@@ -12,9 +12,9 @@ func _process(delta):
 
 
 func _on_area_2d_area_entered(area):
-	var object = area.get_parent()
-	#replace with bootleg state machine that triggers disarm or triggered animation
-	#(queue_free should trigger either way since trap is one use)
-	if (object.object_type != ObjectType.ROGUE and is_player(object)):
-		object.queue_free()
+	#early exit if (theoretically) a charger (only enemy that moves)
+	if (area.get_parent().object_type == ObjectType.ENEMY):
+		return
+	
+	AudioHandler.play_sfx("Hit", 0.9, 1.1)
 	queue_free()

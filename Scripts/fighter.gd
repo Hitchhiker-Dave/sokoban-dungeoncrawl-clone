@@ -11,19 +11,15 @@ func _process(_delta):
 
 #Fighter Centric Interactions
 func object_collision(object :DynamicObject, direction :Vector2, move_distance : int):
-	#Fighter Runs into Trap -> Dead ()
+	#Fighter Runs into Trap -> Death handled by on_area2d_area_entered()
 	if (object.object_type == ObjectType.TRAP):
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
-		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		move_object(direction, move_distance)
-		handle_death()
 		return
 	
-	#Fighter Survives Running into ENEMY -> Dead Enemy
+	#Fighter Survives Running into ENEMY -> Enemy death handled on their end
 	elif (object.object_type == ObjectType.ENEMY):
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
-		AudioHandler.play_sfx("Hit", 0.9, 1.1)
-		object.queue_free()
 		move_object(direction, move_distance)
 		return
 	
@@ -32,7 +28,5 @@ func object_collision(object :DynamicObject, direction :Vector2, move_distance :
 func _on_area_2d_area_entered(area):
 	var object = area.get_parent()
 	
-	#Enemy/Arrow goes into Fighter -> Destroy Enemy/Arrow
-	if (object.object_type == ObjectType.ENEMY):
-		AudioHandler.play_sfx("Hit", 0.9, 1.1)
-		object.queue_free()
+	if (object.object_type == ObjectType.TRAP):
+		handle_death()

@@ -25,15 +25,12 @@ func object_collision(object :DynamicObject, direction :Vector2, move_distance :
 	if (object.object_type == ObjectType.TRAP):
 		#play_sound(walk, 0.9, 1.1)
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
-		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		move_object(direction, move_distance)
 		return
 	
-	#Rogue Survives Running into ENEMY -> Dead Enemy
+	#Rogue Survives Running into ENEMY -> Enemy death handled on their end
 	elif (object.object_type == ObjectType.ENEMY):
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
-		AudioHandler.play_sfx("Hit", 0.9, 1.1)
-		object.queue_free()
 		move_object(direction, move_distance)
 		return
 	
@@ -44,5 +41,4 @@ func _on_area_2d_area_entered(area):
 	
 	#Enemy/Arrow goes into Rogue -> Rogue Dies
 	if (object.object_type == ObjectType.ENEMY or object.object_type == ObjectType.PROJECTILE):
-		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		handle_death()

@@ -9,7 +9,7 @@ var check_distance : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	object_type = ObjectType.PROJECTILE
-	move_distance = 32
+	move_distance = 800
 	check_distance = 32
 	sprite_2d.look_at(facing)
 	ray_cast_2d.target_position = facing * check_distance
@@ -32,3 +32,15 @@ func _process(delta):
 			queue_free()
 			
 	position += facing * move_distance * delta
+
+func _on_area_2d_area_entered(area):
+	var object = area.get_parent()
+	if (object.object_type == ObjectType.ENEMY): 
+		return
+	
+	if (object.object_type == ObjectType.FIGHTER):
+		AudioHandler.play_sfx("Cant_Move", 0.9, 1.1)
+	elif (object.is_player()):
+		AudioHandler.play_sfx("Hit", 0.9, 1.1)
+		
+	queue_free()
