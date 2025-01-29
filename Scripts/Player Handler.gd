@@ -28,6 +28,7 @@ func _ready():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	print(active_player.moving)
 	if player_count <= 0: #no more players, handle win lose state
 		if player_reached_level_transition:
 			ready_for_next_level.emit() 

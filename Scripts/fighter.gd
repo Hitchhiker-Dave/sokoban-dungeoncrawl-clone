@@ -28,5 +28,10 @@ func object_collision(object :DynamicObject, direction :Vector2, move_distance :
 func _on_area_2d_area_entered(area):
 	var object = area.get_parent()
 	
+	#die if run into trap
 	if (object.object_type == ObjectType.TRAP):
+		handle_death()
+		
+	#die if enemy runs INTO you
+	if (object.object_type == ObjectType.ENEMY and object.moving):
 		handle_death()

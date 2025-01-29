@@ -34,20 +34,21 @@ func _process(_delta):
 
 #do turn when enemy handler says so
 func do_turn():
-	if(target_direction == null):
+	if(target_direction == null or just_fired):
 		return
 	
 	#don't shoot via early return if target is in melee
 	if (check_if_in_melee(ray_cast, target_direction)) : 
 		return
 	
+	just_fired = true
 	var instance = arrow.instantiate()
 	instance.facing = last_spotted
 	add_sibling(instance)
 	instance.position = global_position
 	instance.tile_map = tile_map
 	timer.start()
-	just_fired = true
+	
 
 func _on_timer_timeout():
 	just_fired = false

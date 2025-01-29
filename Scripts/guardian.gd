@@ -5,21 +5,22 @@ extends Enemy
 @onready var ray_cast = $RayCast2D
 @onready var sprite = $Sprite2D
 @onready var warning = $Warning
+@onready var move_timer = $Move_Timer
 @onready var target_direction 
-@onready var last_spotted : Vector2
+@onready var just_moved : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	object_type = ObjectType.ENEMY
 	is_movable = false
 	move_distance = 32
+	just_moved = false
 
 func _process(_delta):
 	target_direction = search_for_target(ray_cast)
 	
 	if (target_direction != null): #player was spotted on a cardinal
 		warning.visible = true
-		last_spotted = target_direction 
 		
 		if target_direction.x < 0: 
 			sprite.flip_h = true
@@ -32,10 +33,16 @@ func _process(_delta):
 #do turn when enemy handler says so
 func do_turn():
 	
-	if(target_direction != null):
-		move_object(last_spotted, move_distance)
+	if(target_direction != null and !just_moved):
+		just_moved = true
+		move_timer.start()
+		move_object(target_direction, move_distance)
 
 func _on_area_2d_area_entered(area):
 	var object = area.get_parent()
 	if (is_player(object) == true):
-		object.queue_free()
+		queue_free()
+
+
+func _on_move_timer_timeout():
+	just_moved = false

@@ -33,8 +33,8 @@ func _physics_process(delta):
 		# basic tile movement
 		marker.position.y = 2 * roundf(sin(Time.get_ticks_msec() * delta * 0.9)) - 24
 		
-		#problem: is_action_pressed makes it so a player piece inherits the movement of a previous one during a level transition
-		if (Input.is_action_just_pressed("wait")):
+		if (Input.is_action_just_pressed("Wait")):
+			print("skipped turn")
 			post_player_move() #basically forfiet a turn
 		if ((Input.is_action_just_pressed("Move Up") or
 			Input.is_action_pressed("Move Up"))):
@@ -126,11 +126,11 @@ func handle_level_transistion():
 	queue_free()
 	
 func post_player_move():
-	if (just_moved):
-		just_moved = false
-		has_moved.emit()
 	
-	pass
+	moving = false
+	has_moved.emit()
+	
+	return
 	
 func object_collision(object : DynamicObject, direction : Vector2, move_distance : int):
 	#old spagetti code from legacy move() code kept for reference

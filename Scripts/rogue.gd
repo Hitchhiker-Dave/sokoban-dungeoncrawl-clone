@@ -39,6 +39,10 @@ func object_collision(object :DynamicObject, direction :Vector2, move_distance :
 func _on_area_2d_area_entered(area):
 	var object = area.get_parent()
 	
-	#Enemy/Arrow goes into Rogue -> Rogue Dies
-	if (object.object_type == ObjectType.ENEMY or object.object_type == ObjectType.PROJECTILE):
+	#Arrow goes into Rogue -> Rogue Dies
+	if (object.object_type == ObjectType.PROJECTILE):
+		handle_death()
+
+	#die if enemy runs INTO you
+	if (object.object_type == ObjectType.ENEMY and !object.moving):
 		handle_death()

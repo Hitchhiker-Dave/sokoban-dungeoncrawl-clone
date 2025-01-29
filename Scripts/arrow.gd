@@ -10,7 +10,7 @@ var check_distance : int
 func _ready():
 	object_type = ObjectType.PROJECTILE
 	move_distance = 800
-	check_distance = 32
+	check_distance = 4 #arrow 3 pixel "radius"
 	sprite_2d.look_at(facing)
 	ray_cast_2d.target_position = facing * check_distance
 	AudioHandler.play_sfx("Shoot", 0.9, 1.1)
@@ -40,7 +40,7 @@ func _on_area_2d_area_entered(area):
 	
 	if (object.object_type == ObjectType.FIGHTER):
 		AudioHandler.play_sfx("Cant_Move", 0.9, 1.1)
-	elif (object.is_player()):
+	elif (self.is_player(object)):
 		AudioHandler.play_sfx("Hit", 0.9, 1.1)
 		
 	queue_free()

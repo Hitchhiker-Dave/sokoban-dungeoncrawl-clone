@@ -22,6 +22,7 @@ func check_if_in_melee(ray_cast_2d : RayCast2D, direction : Vector2):
 		return true
 	return false
 
+#function that looks for players and returns their direction as a normalized vector
 func search_for_target(ray_cast_2d : RayCast2D):
 	#looks for direction of player and returns ids
 	for i in range(4):
@@ -57,7 +58,7 @@ func search_for_target(ray_cast_2d : RayCast2D):
 func search_player_list(player_list : Array, player_type : ObjectType):
 	for i in range(player_list.size()):
 			if player_list[i].object_type == player_type:
-				return (player_list[i].position - global_position).normalized()
+				return global_position.direction_to(player_list[i].global_position)
 	return null
 
 func clear_shot(direction : Vector2, end_position : Vector2):
