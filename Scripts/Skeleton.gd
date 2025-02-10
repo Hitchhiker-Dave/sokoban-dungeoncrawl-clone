@@ -48,8 +48,8 @@ func do_turn():
 	instance.position = global_position
 	instance.tile_map = tile_map
 	timer.start()
+	has_moved.emit()
 	
-
 func _on_timer_timeout():
 	just_fired = false
 

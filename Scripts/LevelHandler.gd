@@ -53,16 +53,16 @@ func _process(_delta):
 	if Input.is_action_just_pressed("ui_menu") and !is_level_cleared:
 		if is_paused:
 			menu.hide()
-			player_handler.toggle_activity()
 		else:
 			menu.show()
-			player_handler.toggle_activity()
 			
 		is_paused = !is_paused
+		player_handler.toggle_activity()
 			
 func restart_level():
 	#genuinely no other way to automate this
 	current_level = get_tree().current_scene.scene_file_path
+	Global.player_turn = true 
 	SceneSwitcher.switch_scene(current_level)
 
 func go_to_next_level():
@@ -81,9 +81,10 @@ func _on_menu_skip_level_button_pressed():
 	go_to_next_level()
 
 func _on_player_handler_player_moved():
-	player_handler.toggle_activity()
+	Global.toggle_player_turn()
 	enemy_handler.enemy_turn()
-	player_handler.toggle_activity()
+	await enemy_handler.finised_turn
+	Global.toggle_player_turn()
 	
 func update_players_exited_level():
 	pcs_alive += 1

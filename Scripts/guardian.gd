@@ -32,17 +32,15 @@ func _process(_delta):
 
 #do turn when enemy handler says so
 func do_turn():
-	
-	if(target_direction != null and !just_moved):
+	if(target_direction != null and !just_moved and !check_for_allies(ray_cast, target_direction)):
 		just_moved = true
 		move_timer.start()
 		move_object(target_direction, move_distance)
-
-func _on_area_2d_area_entered(area):
-	var object = area.get_parent()
-	if (is_player(object) == true):
-		queue_free()
-
+	has_moved.emit()
+		
+	#too much of a hassle to kill guardian from here, 
+	#just let the player call for it and figure out how to do better next project 
 
 func _on_move_timer_timeout():
 	just_moved = false
+

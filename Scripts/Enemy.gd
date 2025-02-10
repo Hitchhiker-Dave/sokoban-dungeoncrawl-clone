@@ -1,9 +1,10 @@
 extends DynamicObject
 class_name Enemy
 
+signal has_moved
+
 @onready var direction = [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN]
 @onready var valid_targets = [ObjectType.FIGHTER, ObjectType.ROGUE] #ROGUE Should always be last since they're stealthy
-@onready var player_list = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,6 +15,10 @@ func _ready():
 func _process(_delta):
 	pass
 
+func handle_death():
+	AudioHandler.play_sfx("Hit", 0.9, 1.1)
+	queue_free()
+
 func check_if_in_melee(ray_cast_2d : RayCast2D, direction : Vector2):
 	ray_cast_2d.force_raycast_update()
 	var collider = get_collider(ray_cast_2d, direction, 32)
@@ -22,8 +27,17 @@ func check_if_in_melee(ray_cast_2d : RayCast2D, direction : Vector2):
 		return true
 	return false
 
-#function that looks for players and returns their direction as a normalized vector
+#bool function that checks if there's an ally at a specific tile
+func check_for_allies(ray_cast_2d : RayCast2D, direction : Vector2):
+	ray_cast_2d.force_raycast_update()
+	var collider = get_collider(ray_cast_2d, direction, move_distance)
+	if collider:
+		return get_collider(ray_cast_2d, direction, move_distance).get_parent().object_type == ObjectType.ENEMY
+	return false
+
+#function that looks for players and returns their direction as a normalized (cardinal) vector
 func search_for_target(ray_cast_2d : RayCast2D):
+	var player_list = []
 	#looks for direction of player and returns ids
 	for i in range(4):
 		
@@ -33,33 +47,35 @@ func search_for_target(ray_cast_2d : RayCast2D):
 		if (collider != null):
 			var object = collider.get_parent()
 
+			#Create lookup tuple of player's and their cardinal directions
 			if ( is_player(object) and clear_shot(direction[i], object.global_position) ):
-				player_list.append(object)
-					
-			else:	
-				continue
+				player_list.append({"Player" : object, "Direction" : direction[i]})
 	
-	#sorts through spoted players and returns direction spotted
+	#check if there are any players in the list
 	if (player_list.size() <= 0):
 		return null #nothing found
 	
+	#sorts through spoted players; Fighter > Rouge, then proximity
 	else:
-		var target
-		for i in valid_targets:
-			target = search_player_list(player_list, i)
-			if (target != null):
-				player_list = [] #clear list
-				return target
-			else:
-				continue
-				
-	return null
+		playerListSort(player_list)
+		return player_list[0]["Direction"]
 
-func search_player_list(player_list : Array, player_type : ObjectType):
-	for i in range(player_list.size()):
-			if player_list[i].object_type == player_type:
-				return global_position.direction_to(player_list[i].global_position)
-	return null
+#"optimized bubble sort for quick implementation (sort list too small for notable performance hit)
+func playerListSort(list : Array):
+	var len : int = list.size()
+	var newLen : int = -999
+	while(len > 1):
+		newLen = 0
+		for i in range(len - 1):
+			var entry1 = list[i]["Player"]
+			var entry2 = list[i+1]["Player"]
+			if(entry1.object_type == ObjectType.ROGUE and entry2.object_type == ObjectType.FIGHTER):
+				var temp : Dictionary = list[i]
+				list[i] = list[i+1]
+				list[i+1] = temp
+				newLen = i
+		len = newLen
+	return list
 
 func clear_shot(direction : Vector2, end_position : Vector2):
 	#Get current tile Vector2i

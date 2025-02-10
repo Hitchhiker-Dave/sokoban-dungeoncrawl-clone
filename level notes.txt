@@ -11,7 +11,7 @@ Basic Levels (Psuedo Tutorials /introducing how the Enemies work)
 4: Another Tutorial where you need to escort the rogue to the end but this time the Fighter has to clear a trap w/ boulder
 
 Advanced Levels (Player should know how the basic mechanics, enemies, and objects work)
-1: how to deal with charger (maybe the charger should be saved for advanced levels)
+1: Waiting and how to deal with charger (Same for both classes)
 2:
 3:
 4:
@@ -29,8 +29,8 @@ X : Boulder,Skeleton -> Bx?
 Boulder,Golem
 C : Boulder,Rogue : Intro to Rogue Tutorial -> level T3
 C : Boulder,Fighter -> level T2
-Skeleton,Golem
+Skeleton,Golem -> A4 probably
 C : Skeleton,Rogue -> B1
 C : Skeleton,Fighter -> B2
-X : Golem,Rogue -> Ax (charger tutorial level)
-X : Golem,Fighter -> Ax (charger tutorial level)
+X : Golem,Rogue -> A1 (charger tutorial level)
+X : Golem,Fighter -> A1 (charger tutorial level)

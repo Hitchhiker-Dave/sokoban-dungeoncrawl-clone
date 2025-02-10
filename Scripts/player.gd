@@ -29,29 +29,30 @@ func stop_ghost_movement():
 func _physics_process(delta):
 	
 	#check if player is controlling this paticular character
-	if is_active: #if true, you can move the player
-		# basic tile movement
-		marker.position.y = 2 * roundf(sin(Time.get_ticks_msec() * delta * 0.9)) - 24
-		
-		if (Input.is_action_just_pressed("Wait")):
-			print("skipped turn")
-			post_player_move() #basically forfiet a turn
-		if ((Input.is_action_just_pressed("Move Up") or
-			Input.is_action_pressed("Move Up"))):
-			move(Vector2.UP)
-			post_player_move()
-		if ((Input.is_action_just_pressed("Move Down") or
-			Input.is_action_pressed("Move Down"))):
-			move(Vector2.DOWN)
-			post_player_move()
-		if ((Input.is_action_just_pressed("Move Left") or
-			Input.is_action_pressed("Move Left"))):
-			move(Vector2.LEFT)
-			post_player_move()
-		if (Input.is_action_just_pressed("Move Right") or
-			Input.is_action_pressed("Move Right")):
-			move(Vector2.RIGHT)
-			post_player_move()
+	if !is_active: #early return if you can't move the player
+		return
+	
+	# basic tile movement
+	marker.position.y = 2 * roundf(sin(Time.get_ticks_msec() * delta * 0.9)) - 24
+	
+	if (Input.is_action_just_pressed("Wait")):
+		post_player_move() #basically forfiet a turn
+	if ((Input.is_action_just_pressed("Move Up") or
+		Input.is_action_pressed("Move Up"))):
+		move(Vector2.UP)
+		post_player_move()
+	if ((Input.is_action_just_pressed("Move Down") or
+		Input.is_action_pressed("Move Down"))):
+		move(Vector2.DOWN)
+		post_player_move()
+	if ((Input.is_action_just_pressed("Move Left") or
+		Input.is_action_pressed("Move Left"))):
+		move(Vector2.LEFT)
+		post_player_move()
+	if (Input.is_action_just_pressed("Move Right") or
+		Input.is_action_pressed("Move Right")):
+		move(Vector2.RIGHT)
+		post_player_move()
 
 #generic function for pushing an object; i.e. allows fighter to push rocks, but not rogue and wizard
 func push_object(object: DynamicObject, direction : Vector2, move_distance : int):
@@ -63,7 +64,6 @@ func push_object(object: DynamicObject, direction : Vector2, move_distance : int
 
 func move(direction: Vector2):
 	#check if already moving
-	
 	if tween and tween.is_running():
 		return
 	
@@ -85,7 +85,6 @@ func move(direction: Vector2):
 		#check if player object is about to leave level
 		if (object.object_type == ObjectType.EXIT):
 			move_object(direction, move_distance)
-			print("Level exit")
 			AudioHandler.play_sfx("Level_End", 1.0, 1.2)
 			handle_level_transistion()
 			return
@@ -101,7 +100,6 @@ func move(direction: Vector2):
 		
 		#Universal Object Interactions (I.e. same for all class/player types)	
 		elif (object.object_type == ObjectType.TREASURE):
-				
 				AudioHandler.play_sfx("Walk", 0.9, 1.1)
 				move_object(direction, move_distance)
 				return
@@ -118,6 +116,7 @@ func move(direction: Vector2):
 		return
 	
 func handle_death():
+	AudioHandler.play_sfx("Hit", 0.9, 1.1)
 	player_death.emit()
 	queue_free()
 
@@ -126,9 +125,8 @@ func handle_level_transistion():
 	queue_free()
 	
 func post_player_move():
-	
-	moving = false
-	has_moved.emit()
+	if is_active:
+		has_moved.emit()
 	
 	return
 	

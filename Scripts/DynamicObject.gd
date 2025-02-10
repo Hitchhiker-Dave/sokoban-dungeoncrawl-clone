@@ -2,7 +2,6 @@ extends Node2D
 class_name DynamicObject #basically all the game pieces on the board
 
 @onready var animation_speed := .2 #normal = 0.2, small numbers is faster
-@onready var moving := false
 
 enum ObjectType{
 	FIGHTER,
@@ -59,12 +58,8 @@ func move_object(direction: Vector2, distance: int):
 	var target_move_position = global_position + direction * distance
 	#move object
 	if tween and tween.is_running():
-		moving = false
+		return
 		
-	elif (tween and tween.is_running() == false): #finished moving
-		moving = false
-		
-	moving = true
 	tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", target_move_position, animation_speed).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
 	return
@@ -75,12 +70,9 @@ func move_failed(direction: Vector2, distance: int): #animation for failing to m
 	
 	if tween and tween.is_running():
 		return
-	elif (tween and tween.is_running() == false): #finished moving
-		moving = false
 		
 	#move object to position before moving back to starting point
 	#signal here for screen shake?
-	moving = true
 	tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", target_position, animation_speed / 2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(self, "global_position", original_position, animation_speed / 2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT_IN)
