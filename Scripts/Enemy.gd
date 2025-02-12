@@ -1,15 +1,15 @@
 extends DynamicObject
 class_name Enemy
 
-signal has_moved
+signal has_moved(position : Vector2)
 
-@onready var direction = [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN]
+@onready var direction : Array[Vector2] = [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN]
 @onready var valid_targets = [ObjectType.FIGHTER, ObjectType.ROGUE] #ROGUE Should always be last since they're stealthy
+@onready var invalid_spaces = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -27,13 +27,10 @@ func check_if_in_melee(ray_cast_2d : RayCast2D, direction : Vector2):
 		return true
 	return false
 
-#bool function that checks if there's an ally at a specific tile
-func check_for_allies(ray_cast_2d : RayCast2D, direction : Vector2):
-	ray_cast_2d.force_raycast_update()
-	var collider = get_collider(ray_cast_2d, direction, move_distance)
-	if collider:
-		return get_collider(ray_cast_2d, direction, move_distance).get_parent().object_type == ObjectType.ENEMY
-	return false
+#bool function that returns false if there's an ally at a specific tile
+func check_if_tile_is_free(direction : Vector2, distance : int):
+	print("Enemy Class- Invalid Spaces: ", invalid_spaces)
+	return !((global_position + (direction * distance)) in invalid_spaces)
 
 #function that looks for players and returns their direction as a normalized (cardinal) vector
 func search_for_target(ray_cast_2d : RayCast2D):

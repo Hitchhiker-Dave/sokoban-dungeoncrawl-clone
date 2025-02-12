@@ -37,20 +37,16 @@ func _physics_process(delta):
 	
 	if (Input.is_action_just_pressed("Wait")):
 		post_player_move() #basically forfiet a turn
-	if ((Input.is_action_just_pressed("Move Up") or
-		Input.is_action_pressed("Move Up"))):
+	if (Input.is_action_just_pressed("Move Up")):
 		move(Vector2.UP)
 		post_player_move()
-	if ((Input.is_action_just_pressed("Move Down") or
-		Input.is_action_pressed("Move Down"))):
+	if (Input.is_action_just_pressed("Move Down")):
 		move(Vector2.DOWN)
 		post_player_move()
-	if ((Input.is_action_just_pressed("Move Left") or
-		Input.is_action_pressed("Move Left"))):
+	if (Input.is_action_just_pressed("Move Left")):
 		move(Vector2.LEFT)
 		post_player_move()
-	if (Input.is_action_just_pressed("Move Right") or
-		Input.is_action_pressed("Move Right")):
+	if (Input.is_action_just_pressed("Move Right")):
 		move(Vector2.RIGHT)
 		post_player_move()
 

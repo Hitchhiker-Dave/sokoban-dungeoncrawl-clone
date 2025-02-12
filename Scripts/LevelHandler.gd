@@ -83,6 +83,7 @@ func _on_menu_skip_level_button_pressed():
 func _on_player_handler_player_moved():
 	Global.toggle_player_turn()
 	enemy_handler.enemy_turn()
+	enemy_handler.occupied_coords = []	
 	await enemy_handler.finised_turn
 	Global.toggle_player_turn()
 	

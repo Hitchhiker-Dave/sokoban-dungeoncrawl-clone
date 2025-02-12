@@ -5,7 +5,6 @@ extends Enemy
 @onready var ray_cast = $RayCast2D
 @onready var sprite = $Sprite2D
 @onready var warning = $Warning
-@onready var move_timer = $Move_Timer
 @onready var target_direction 
 @onready var just_moved : bool
 
@@ -32,15 +31,12 @@ func _process(_delta):
 
 #do turn when enemy handler says so
 func do_turn():
-	if(target_direction != null and !just_moved and !check_for_allies(ray_cast, target_direction)):
+	if(target_direction != null and check_if_tile_is_free(target_direction, move_distance)):
 		just_moved = true
-		move_timer.start()
-		move_object(target_direction, move_distance)
-	has_moved.emit()
-		
+		await move_object(target_direction, move_distance)
+		has_moved.emit(global_position + (target_direction * move_distance))
+	else:
+		has_moved.emit(global_position)
 	#too much of a hassle to kill guardian from here, 
 	#just let the player call for it and figure out how to do better next project 
-
-func _on_move_timer_timeout():
-	just_moved = false
 
