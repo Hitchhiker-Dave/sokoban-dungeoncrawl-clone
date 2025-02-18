@@ -37,4 +37,7 @@ func _on_area_2d_area_entered(area):
 		#you die if it's not your turn or you're not active
 		if(!Global.player_turn or !is_active):
 			handle_death()
+			
+	elif (object.object_type == ObjectType.EXIT):
+		handle_level_transistion()
 

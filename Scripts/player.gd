@@ -78,12 +78,7 @@ func move(direction: Vector2):
 		var object = collider.get_parent()
 		ray_cast_2d.target_position = Vector2(0, 0) #ensure raycast doesn't trigger multiple times
 		
-		#check if player object is about to leave level
-		if (object.object_type == ObjectType.EXIT):
-			move_object(direction, move_distance)
-			AudioHandler.play_sfx("Level_End", 1.0, 1.2)
-			handle_level_transistion()
-			return
+		if (object.object_type == ObjectType.EXIT): move_object(direction, move_distance)
 		
 		elif (object.get_is_movable()):
 			if is_path_clear(object, direction, move_distance, true):
@@ -117,6 +112,8 @@ func handle_death():
 	queue_free()
 
 func handle_level_transistion():
+	print(self, "is exiting level")
+	AudioHandler.play_sfx("Level_End", 1.0, 1.2)
 	hit_level_transition.emit() #move to level exit
 	queue_free()
 	

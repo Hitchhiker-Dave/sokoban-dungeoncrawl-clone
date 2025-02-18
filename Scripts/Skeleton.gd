@@ -35,10 +35,12 @@ func _process(_delta):
 #do turn when enemy handler says so
 func do_turn():
 	if(target_direction == null or just_fired):
+		has_moved.emit(global_position) #tell enemy handler the skeleton is finished and its current position
 		return
 	
 	#don't shoot via early return if target is in melee
 	if (check_if_in_melee(ray_cast, target_direction)) : 
+		has_moved.emit(global_position) #tell enemy handler the skeleton is finished and its current position
 		return
 	
 	just_fired = true
@@ -48,7 +50,7 @@ func do_turn():
 	instance.position = global_position
 	instance.tile_map = tile_map
 	timer.start()
-	has_moved.emit()
+	has_moved.emit(global_position) #tell enemy handler the skeleton is finished and its current position
 	
 func _on_timer_timeout():
 	just_fired = false

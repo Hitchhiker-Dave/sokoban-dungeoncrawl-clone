@@ -11,7 +11,6 @@ func _ready():
 
 #activate when the level says the player's turn is over (currently when the player moves)
 func enemy_turn():
-	print("Enemy Turn")
 	if(enemy_list.size() <= 0): 
 		finised_turn.emit()
 		return
@@ -20,7 +19,6 @@ func enemy_turn():
 		if is_instance_valid(enemy):
 			enemy.invalid_spaces = occupied_coords
 			await enemy.do_turn()
-	print("Enemy Handler- Occupided Coords", occupied_coords)
 	occupied_coords = []
 	finised_turn.emit()
 

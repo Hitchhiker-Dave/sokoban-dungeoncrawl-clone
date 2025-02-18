@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://vg2trkjr1cp" path="res://Art/floorexit.png" id="2_dcegy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oe65f"]
-size = Vector2(24, 24)
+size = Vector2(2, 2)
 
 [node name="level_exit" type="Node2D"]
 z_index = 1

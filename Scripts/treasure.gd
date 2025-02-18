@@ -11,6 +11,5 @@ func _ready():
 
 func _on_area_2d_area_entered(area):
 	await AudioHandler.play_sfx("Treasure_Pickup", 0.9, 1.1)
-	area.monitoring = false
 	picked_up.emit()
 	queue_free()
