@@ -10,7 +10,7 @@ var check_distance : int
 func _ready():
 	object_type = ObjectType.PROJECTILE
 	move_distance = 800
-	check_distance = 4 #arrow 3 pixel "radius"
+	check_distance = 16 #arrow is 5 pixels "long"
 	sprite_2d.look_at(facing)
 	ray_cast_2d.target_position = facing * check_distance
 	AudioHandler.play_sfx("Shoot", 0.9, 1.1)
@@ -34,6 +34,7 @@ func _process(delta):
 	position += facing * move_distance * delta
 
 func _on_area_2d_area_entered(area):
+	print(area)
 	var object = area.get_parent()
 	if (object.object_type == ObjectType.ENEMY): 
 		return

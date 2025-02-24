@@ -6,6 +6,7 @@ signal has_moved(position : Vector2)
 @onready var direction : Array[Vector2] = [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN]
 @onready var valid_targets = [ObjectType.FIGHTER, ObjectType.ROGUE] #ROGUE Should always be last since they're stealthy
 @onready var invalid_spaces = []
+@onready var dying : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +18,7 @@ func _process(_delta):
 
 func handle_death():
 	AudioHandler.play_sfx("Hit", 0.9, 1.1)
+	dying = true
 	queue_free()
 
 func check_if_in_melee(ray_cast_2d : RayCast2D, direction : Vector2):
@@ -27,9 +29,11 @@ func check_if_in_melee(ray_cast_2d : RayCast2D, direction : Vector2):
 		return true
 	return false
 
-#bool function that returns false if there's an ally at a specific tile
+#bool function that returns false if there's an ally/obstacle at a specific tile
 func check_if_tile_is_free(direction : Vector2, distance : int):
-	return !((global_position + (direction * distance)) in invalid_spaces)
+	print(invalid_spaces)
+	if ((global_position + (direction * distance)) in invalid_spaces): return false
+	return true
 
 #function that looks for players and returns their direction as a normalized (cardinal) vector
 func search_for_target(ray_cast_2d : RayCast2D):

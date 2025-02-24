@@ -81,11 +81,11 @@ func _on_menu_skip_level_button_pressed():
 	go_to_next_level()
 
 func _on_player_handler_player_moved():
-	Global.toggle_player_turn()
-	enemy_handler.enemy_turn()
-	enemy_handler.occupied_coords = []	
-	await enemy_handler.finised_turn
-	Global.toggle_player_turn()
+	Global.player_turn = false
+	await enemy_handler.enemy_turn()
+	enemy_handler.occupied_coords = []
+	Global.player_turn = true
+	
 	
 func update_players_exited_level():
 	pcs_alive += 1

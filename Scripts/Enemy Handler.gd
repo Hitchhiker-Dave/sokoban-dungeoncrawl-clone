@@ -16,7 +16,7 @@ func enemy_turn():
 		return
 	
 	for enemy in enemy_list:
-		if is_instance_valid(enemy):
+		if is_instance_valid(enemy) and !enemy.dying:
 			enemy.invalid_spaces = occupied_coords
 			await enemy.do_turn()
 	occupied_coords = []

@@ -59,9 +59,10 @@ func move_object(direction: Vector2, distance: int):
 	#move object
 	if tween and tween.is_running():
 		return
-		
+	
 	tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", target_move_position, animation_speed).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
 	return
 	
 func move_failed(direction: Vector2, distance: int): #animation for failing to move
@@ -76,6 +77,7 @@ func move_failed(direction: Vector2, distance: int): #animation for failing to m
 	tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", target_position, animation_speed / 2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(self, "global_position", original_position, animation_speed / 2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT_IN)
+	await tween.finished
 	return
 
 func get_collider(ray_cast: RayCast2D, direction : Vector2, distance : int):

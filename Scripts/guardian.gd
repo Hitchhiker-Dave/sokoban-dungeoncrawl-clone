@@ -6,6 +6,7 @@ extends Enemy
 @onready var sprite = $Sprite2D
 @onready var warning = $Warning
 @onready var target_direction 
+@onready var last_spotted
 @onready var just_moved : bool
 
 # Called when the node enters the scene tree for the first time.
@@ -13,13 +14,14 @@ func _ready():
 	object_type = ObjectType.ENEMY
 	is_movable = false
 	move_distance = 32
-	just_moved = false
+	has_moved.emit(global_position)
 
 func _process(_delta):
 	target_direction = search_for_target(ray_cast)
 	
-	if (target_direction != null): #player was spotted on a cardinal
+	if (target_direction != null) and Global.player_turn: #player was spotted on a cardinal
 		warning.visible = true
+		last_spotted = target_direction
 		
 		if target_direction.x < 0: 
 			sprite.flip_h = true
@@ -31,12 +33,8 @@ func _process(_delta):
 
 #do turn when enemy handler says so
 func do_turn():
-	if(target_direction != null and check_if_tile_is_free(target_direction, move_distance)):
-		just_moved = true
-		await move_object(target_direction, move_distance)
-		has_moved.emit(global_position + (target_direction * move_distance))
-	else:
-		has_moved.emit(global_position)
-	#too much of a hassle to kill guardian from here, 
-	#just let the player call for it and figure out how to do better next project 
-
+	if(last_spotted and check_if_tile_is_free(last_spotted, move_distance)):
+		await move_object(last_spotted, move_distance)
+		
+	last_spotted = null
+	has_moved.emit(global_position)

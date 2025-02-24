@@ -29,7 +29,11 @@ func stop_ghost_movement():
 func _physics_process(delta):
 	
 	#check if player is controlling this paticular character
-	if !is_active: #early return if you can't move the player
+	if !is_active or !Global.player_turn: #early return if you can't move the player
+		return
+	
+	#check if already moving
+	if tween and tween.is_running():
 		return
 	
 	# basic tile movement
@@ -37,17 +41,17 @@ func _physics_process(delta):
 	
 	if (Input.is_action_just_pressed("Wait")):
 		post_player_move() #basically forfiet a turn
-	if (Input.is_action_just_pressed("Move Up")):
-		move(Vector2.UP)
+	if (Input.is_action_pressed("Move Up")):
+		await move(Vector2.UP)
 		post_player_move()
-	if (Input.is_action_just_pressed("Move Down")):
-		move(Vector2.DOWN)
+	if (Input.is_action_pressed("Move Down")):
+		await move(Vector2.DOWN)
 		post_player_move()
-	if (Input.is_action_just_pressed("Move Left")):
-		move(Vector2.LEFT)
+	if (Input.is_action_pressed("Move Left")):
+		await move(Vector2.LEFT)
 		post_player_move()
-	if (Input.is_action_just_pressed("Move Right")):
-		move(Vector2.RIGHT)
+	if (Input.is_action_pressed("Move Right")):
+		await move(Vector2.RIGHT)
 		post_player_move()
 
 #generic function for pushing an object; i.e. allows fighter to push rocks, but not rogue and wizard
@@ -59,9 +63,6 @@ func push_object(object: DynamicObject, direction : Vector2, move_distance : int
 	return
 
 func move(direction: Vector2):
-	#check if already moving
-	if tween and tween.is_running():
-		return
 	
 	#check if area is walkable
 	if (!is_walkable(direction, move_distance)):
