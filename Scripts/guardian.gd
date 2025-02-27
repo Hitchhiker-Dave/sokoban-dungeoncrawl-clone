@@ -33,8 +33,9 @@ func _process(_delta):
 
 #do turn when enemy handler says so
 func do_turn():
-	if(last_spotted and check_if_tile_is_free(last_spotted, move_distance)):
-		await move_object(last_spotted, move_distance)
+	if(last_spotted):
+		if(check_if_tile_is_free(last_spotted, move_distance)): await move_object(last_spotted, move_distance)
+		
 		
 	last_spotted = null
 	has_moved.emit(global_position)

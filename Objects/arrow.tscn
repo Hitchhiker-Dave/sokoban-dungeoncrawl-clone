@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://btx5ec0clurat" path="res://Art/arrow.png" id="1_a8646"]
 [ext_resource type="Script" path="res://Scripts/arrow.gd" id="1_xiwqc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2cot"]
-size = Vector2(18, 18)
+[sub_resource type="CircleShape2D" id="CircleShape2D_whsii"]
+radius = 12.0
 
 [node name="Arrow" type="Node2D"]
 script = ExtResource("1_xiwqc")
@@ -17,7 +17,7 @@ collision_mask = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_a2cot")
+shape = SubResource("CircleShape2D_whsii")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)

@@ -9,7 +9,7 @@ var check_distance : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	object_type = ObjectType.PROJECTILE
-	move_distance = 800
+	move_distance = 1000
 	check_distance = 16 #arrow is 5 pixels "long"
 	sprite_2d.look_at(facing)
 	ray_cast_2d.target_position = facing * check_distance
