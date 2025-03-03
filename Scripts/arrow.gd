@@ -34,7 +34,6 @@ func _process(delta):
 	position += facing * move_distance * delta
 
 func _on_area_2d_area_entered(area):
-	print(area)
 	var object = area.get_parent()
 	if (object.object_type == ObjectType.ENEMY): 
 		return

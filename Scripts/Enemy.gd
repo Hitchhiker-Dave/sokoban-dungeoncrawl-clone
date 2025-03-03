@@ -31,7 +31,6 @@ func check_if_in_melee(ray_cast_2d : RayCast2D, direction : Vector2):
 
 #bool function that returns false if there's an ally/obstacle at a specific tile
 func check_if_tile_is_free(direction : Vector2, distance : int):
-	print(invalid_spaces)
 	if ((global_position + (direction * distance)) in invalid_spaces): return false
 	return true
 

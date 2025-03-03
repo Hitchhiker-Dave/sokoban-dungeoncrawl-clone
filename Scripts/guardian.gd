@@ -1,4 +1,5 @@
 extends Enemy
+class_name Guardian
 
 #Similar to player, will need a enemy handler to determine when an enemy is allowed to act
 @onready var arrow = preload("res://Objects/arrow.tscn")

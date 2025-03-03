@@ -65,10 +65,12 @@ func handle_player_leaving():
 	remove_player()
 
 func remove_player():
-	await swap_player(1)
-	player_list.remove_at(player_index)
-	player_count -= 1
-		
+	var prev_index = player_index
+	#swap to different player character if current one is dead
+	if (active_player.is_active == false): swap_player(1)
+	player_list.remove_at(prev_index)
+	player_count -= 1	
+	
 func toggle_activity():
 	if active_player == null:
 		return #prevent null error via early exits

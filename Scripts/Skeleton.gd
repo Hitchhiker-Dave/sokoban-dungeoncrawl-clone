@@ -1,4 +1,5 @@
 extends Enemy
+class_name Skeleton
 
 #Similar to player, will need a enemy handler to determine when an enemy is allowed to act
 @onready var arrow = preload("res://Objects/arrow.tscn")
@@ -8,7 +9,7 @@ extends Enemy
 @onready var timer = $Timer
 
 @onready var target_direction 
-@onready var last_spotted : Vector2
+@onready var last_spotted
 @onready var just_fired := false
 @onready var in_melee := false
 
@@ -20,17 +21,17 @@ func _ready():
 func _process(_delta):
 	target_direction = search_for_target(ray_cast)
 	
-	if (target_direction != null): #player was spotted on a cardinal
-		last_spotted = target_direction 
+	if (target_direction != null) and Global.player_turn: #player was spotted on a cardinal
 		warning.visible = true
+		last_spotted = target_direction
 		
 		if target_direction.x < 0: 
 			sprite.flip_h = true
 		
 		else: 
 			sprite.flip_h = false
-	elif just_fired or target_direction == null:
-		warning.visible = false
+	else:
+		warning.visible = false		
 
 #do turn when enemy handler says so
 func do_turn():
@@ -43,13 +44,16 @@ func do_turn():
 		has_moved.emit(global_position) #tell enemy handler the skeleton is finished and its current position
 		return
 	
-	just_fired = true
-	var instance = arrow.instantiate()
-	instance.facing = last_spotted
-	add_sibling(instance)
-	instance.position = global_position
-	instance.tile_map = tile_map
-	timer.start()
+	if (last_spotted):
+		just_fired = true
+		var instance = arrow.instantiate()
+		instance.facing = last_spotted
+		add_sibling(instance)
+		instance.position = global_position
+		instance.tile_map = tile_map
+		timer.start()
+		last_spotted = null
+	
 	has_moved.emit(global_position) #tell enemy handler the skeleton is finished and its current position
 	
 func _on_timer_timeout():

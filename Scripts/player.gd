@@ -108,12 +108,12 @@ func move(direction: Vector2):
 		return
 	
 func handle_death():
+	is_active = false
 	AudioHandler.play_sfx("Hit", 0.9, 1.1)
 	player_death.emit()
 	queue_free()
 
 func handle_level_transistion():
-	print(self, "is exiting level")
 	AudioHandler.play_sfx("Level_End", 1.0, 1.2)
 	hit_level_transition.emit() #move to level exit
 	queue_free()

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://buv3l3yp0w8af" path="res://Art/Warning.png" id="2_1dkd7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isd24"]
-size = Vector2(24, 24)
+size = Vector2(13, 21)
 
 [node name="Guardian" type="Node2D"]
 script = ExtResource("1_vrfu2")
@@ -23,7 +23,7 @@ collision_layer = 31
 collision_mask = 31
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, 1)
+position = Vector2(-1.5, 0.5)
 shape = SubResource("RectangleShape2D_isd24")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

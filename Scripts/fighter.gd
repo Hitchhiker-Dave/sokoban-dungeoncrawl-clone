@@ -20,8 +20,8 @@ func object_collision(object :DynamicObject, direction :Vector2, move_distance :
 	#Fighter Survives Running into ENEMY -> Enemy death handled on their end
 	elif (object.object_type == ObjectType.ENEMY):
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
-		move_object(direction, move_distance)
-		object.handle_death() #bad practice but this game should have been finished a month ago
+		await move_object(direction, move_distance)
+		await object.handle_death() #bad practice but this game should have been finished a month ago
 		return
 	
 	return	
@@ -30,7 +30,7 @@ func _on_area_2d_area_entered(area):
 	var object = area.get_parent()
 	#die if run into trap
 	if (object.object_type == ObjectType.TRAP):
-		handle_death()
+		await handle_death()
 		
 	#If you and an enemy overlap
 	if (object.object_type == ObjectType.ENEMY):
