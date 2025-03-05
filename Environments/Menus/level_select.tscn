@@ -58,27 +58,79 @@ layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
-columns = 5
+columns = 4
 
 [node name="UI_Level" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
 layout_mode = 2
-scene = "res://Environments/Levels/Tutorials/level1.tscn"
+padding = 2.0
+scene = "res://Environments/Levels/Tutorials/levelT1.tscn"
 button_label = "Level 1"
 
 [node name="UI_Level2" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
 layout_mode = 2
-scene = "res://Environments/Levels/Tutorials/level2.tscn"
+padding = 2.0
+scene = "res://Environments/Levels/Tutorials/levelT2.tscn"
 button_label = "Level 2"
 
 [node name="UI_Level3" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
 layout_mode = 2
-scene = "res://Environments/Levels/Tutorials/level3.tscn"
+padding = 2.0
+scene = "res://Environments/Levels/Tutorials/levelT3.tscn"
 button_label = "Level 3"
 
 [node name="UI_Level4" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
 layout_mode = 2
-scene = "res://Environments/Levels/Tutorials/level4.tscn"
+padding = 2.0
+scene = "res://Environments/Levels/Tutorials/levelT4.tscn"
 button_label = "Level 4"
+
+[node name="UI_Level5" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
+layout_mode = 2
+padding = 2.0
+scene = "res://Environments/Levels/Basic/levelB1.tscn"
+button_label = "Level 5"
+
+[node name="UI_Level6" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
+layout_mode = 2
+padding = 2.0
+scene = "res://Environments/Levels/Basic/levelB2.tscn"
+button_label = "Level 6"
+
+[node name="UI_Level7" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
+layout_mode = 2
+padding = 2.0
+scene = "res://Environments/Levels/Basic/levelB3.tscn"
+button_label = "Level 7"
+
+[node name="UI_Level8" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
+layout_mode = 2
+padding = 2.0
+scene = "res://Environments/Levels/Basic/levelB4.tscn"
+button_label = "Level 8"
+
+[node name="UI_Level9" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
+layout_mode = 2
+padding = 2.0
+scene = "res://Environments/Levels/Advanced/levelA1.tscn"
+button_label = "Level 9"
+
+[node name="UI_Level10" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
+layout_mode = 2
+padding = 2.0
+scene = "res://Environments/Levels/Advanced/levelA2.tscn"
+button_label = "Level 10"
+
+[node name="UI_Level11" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
+layout_mode = 2
+padding = 2.0
+scene = "res://Environments/Levels/Advanced/levelA3.tscn"
+button_label = "Level 11"
+
+[node name="UI_Level12" parent="UI/CenterContainer/VBoxContainer/GridContainer" instance=ExtResource("4_418cb")]
+layout_mode = 2
+padding = 2.0
+scene = "res://Environments/Levels/Advanced/levelA4.tscn"
+button_label = "Level 12"
 
 [connection signal="call_for_scene_change" from="UI" to="." method="_on_ui_call_for_scene_change"]
 [connection signal="ui_button_pressed" from="UI/VBoxContainer/HBoxContainer/UI_Menu" to="UI" method="_on_ui_menu_ui_button_pressed"]
@@ -86,3 +138,11 @@ button_label = "Level 4"
 [connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level2" to="UI" method="_on_ui_level_2_ui_button_pressed"]
 [connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level3" to="UI" method="_on_ui_level_3_ui_button_pressed"]
 [connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level4" to="UI" method="_on_ui_level_4_ui_button_pressed"]
+[connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level5" to="UI" method="_on_ui_level_4_ui_button_pressed"]
+[connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level6" to="UI" method="_on_ui_level_4_ui_button_pressed"]
+[connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level7" to="UI" method="_on_ui_level_4_ui_button_pressed"]
+[connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level8" to="UI" method="_on_ui_level_4_ui_button_pressed"]
+[connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level9" to="UI" method="_on_ui_level_4_ui_button_pressed"]
+[connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level10" to="UI" method="_on_ui_level_4_ui_button_pressed"]
+[connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level11" to="UI" method="_on_ui_level_4_ui_button_pressed"]
+[connection signal="ui_button_pressed" from="UI/CenterContainer/VBoxContainer/GridContainer/UI_Level12" to="UI" method="_on_ui_level_4_ui_button_pressed"]

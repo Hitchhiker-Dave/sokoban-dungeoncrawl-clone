@@ -20,8 +20,8 @@ func object_collision(object :DynamicObject, direction :Vector2, move_distance :
 	#Fighter Survives Running into ENEMY -> Enemy death handled on their end
 	elif (object.object_type == ObjectType.ENEMY):
 		AudioHandler.play_sfx("Walk", 0.9, 1.1)
-		await move_object(direction, move_distance)
-		await object.handle_death() #bad practice but this game should have been finished a month ago
+		move_object(direction, move_distance)
+		object.handle_death() #bad practice but this game should have been finished a month ago
 		return
 	
 	return	

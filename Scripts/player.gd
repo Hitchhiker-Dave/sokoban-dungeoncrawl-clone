@@ -79,7 +79,9 @@ func move(direction: Vector2):
 		var object = collider.get_parent()
 		ray_cast_2d.target_position = Vector2(0, 0) #ensure raycast doesn't trigger multiple times
 		
-		if (object.object_type == ObjectType.EXIT): move_object(direction, move_distance)
+		if (object.object_type == ObjectType.EXIT): 
+			is_active = false
+			move_object(direction, move_distance)
 		
 		elif (object.get_is_movable()):
 			if is_path_clear(object, direction, move_distance, true):

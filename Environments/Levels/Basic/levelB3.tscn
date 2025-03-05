@@ -17,7 +17,7 @@
 
 [node name="LevelB3" type="Node2D"]
 script = ExtResource("1_f47qp")
-next_level = "res://Environments/Menus/winning_screen.tscn"
+next_level = "res://Environments/Levels/Basic/levelB4.tscn"
 
 [node name="level_exit" parent="." instance=ExtResource("2_j7loq")]
 position = Vector2(432, 176)

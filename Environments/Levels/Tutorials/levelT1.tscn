@@ -12,7 +12,7 @@
 
 [node name="T1" type="Node2D"]
 script = ExtResource("1_4bbo0")
-next_level = "res://Environments/Levels/Tutorials/level2.tscn"
+next_level = "res://Environments/Levels/Tutorials/levelT2.tscn"
 
 [node name="level_exit" parent="." instance=ExtResource("2_lkma5")]
 position = Vector2(400, 176)

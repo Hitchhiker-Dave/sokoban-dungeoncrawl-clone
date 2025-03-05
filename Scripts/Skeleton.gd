@@ -64,4 +64,3 @@ func _on_hurtbox_area_entered(area):
 		return
 		
 	AudioHandler.play_sfx("Hit", 0.9, 1.1)
-	queue_free()

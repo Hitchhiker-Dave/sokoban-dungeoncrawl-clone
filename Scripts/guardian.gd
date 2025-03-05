@@ -40,3 +40,9 @@ func do_turn():
 		
 	last_spotted = null
 	has_moved.emit(global_position)
+
+func _on_area_2d_area_entered(area):
+	if (area.get_parent().object_type == ObjectType.PROJECTILE):
+		return
+		
+	AudioHandler.play_sfx("Hit", 0.9, 1.1)

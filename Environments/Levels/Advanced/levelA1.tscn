@@ -13,7 +13,7 @@
 
 [node name="levelA1" type="Node2D"]
 script = ExtResource("1_ayy2q")
-next_level = "res://Environments/Menus/main_menu.tscn"
+next_level = "res://Environments/Levels/Advanced/levelA2.tscn"
 
 [node name="TileMap" parent="." instance=ExtResource("2_e6que")]
 unique_name_in_owner = true
