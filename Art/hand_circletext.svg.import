@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt2bajgeyi727"
-path="res://.godot/imported/GBA WSU Presence Page Link.png-634631a4bd79d8d941eeecb2eb0845e5.ctex"
+uid="uid://dtuyhau3n7jd8"
+path="res://.godot/imported/hand_circletext.svg-04495310cab6cfbdac6bb04816be2a4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/GBA WSU Presence Page Link.png"
-dest_files=["res://.godot/imported/GBA WSU Presence Page Link.png-634631a4bd79d8d941eeecb2eb0845e5.ctex"]
+source_file="res://Art/hand_circletext.svg"
+dest_files=["res://.godot/imported/hand_circletext.svg-04495310cab6cfbdac6bb04816be2a4a.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

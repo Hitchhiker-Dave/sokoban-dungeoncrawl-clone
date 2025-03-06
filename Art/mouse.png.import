@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs0578yni0545"
-path="res://.godot/imported/gba_discord_link_8px.png-b0d1077fcc30eb4f41bc35f620c77328.ctex"
+uid="uid://rky0bxa3wvsp"
+path="res://.godot/imported/mouse.png-2e45df3cca778cc6e339031d914aae94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/gba_discord_link_8px.png"
-dest_files=["res://.godot/imported/gba_discord_link_8px.png-b0d1077fcc30eb4f41bc35f620c77328.ctex"]
+source_file="res://Art/mouse.png"
+dest_files=["res://.godot/imported/mouse.png-2e45df3cca778cc6e339031d914aae94.ctex"]
 
 [params]
 

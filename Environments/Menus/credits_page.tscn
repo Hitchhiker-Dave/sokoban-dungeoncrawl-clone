@@ -1,15 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg8cx5cc7ntij"]
+[gd_scene load_steps=7 format=3 uid="uid://dg8cx5cc7ntij"]
 
 [ext_resource type="Script" path="res://Scripts/credits_page.gd" id="1_4ag7n"]
 [ext_resource type="Theme" uid="uid://6g50mxodmcvl" path="res://UI Styles/menu_buttons.tres" id="1_ilpjx"]
-[ext_resource type="Texture2D" uid="uid://bs0578yni0545" path="res://Art/gba_discord_link_8px.png" id="3_a1agr"]
 [ext_resource type="Texture2D" uid="uid://y68ihhlvhs67" path="res://Art/background.png" id="3_jpjf6"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_u7kg1"]
-font_size = 32
-font_color = Color(1, 0.945098, 0.909804, 1)
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="Theme" uid="uid://ctbm7rt0bnens" path="res://UI Styles/normal_text.tres" id="3_obdn8"]
+[ext_resource type="Texture2D" uid="uid://d34rvkg02eq8o" path="res://Art/linktree_qr_code.png" id="4_b8aec"]
+[ext_resource type="Texture2D" uid="uid://c0nqtgjm5nrgr" path="res://Art/hand_circletext_white.svg" id="5_e5csv"]
 
 [node name="Credits Page" type="Node2D"]
 script = ExtResource("1_4ag7n")
@@ -19,67 +15,100 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 360.0
-theme = ExtResource("1_ilpjx")
 
 [node name="Background" type="Sprite2D" parent="Control"]
 position = Vector2(320, 180)
 texture = ExtResource("3_jpjf6")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.5
-offset_top = -70.5
-offset_right = 125.5
-offset_bottom = 70.5
+offset_left = -221.5
+offset_top = -112.5
+offset_right = 221.5
+offset_bottom = 112.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+
+[node name="CenterContainerQR" type="CenterContainer" parent="Control/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer/HBoxContainer/CenterContainerQR"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_obdn8")
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/CenterContainer/HBoxContainer/CenterContainerQR/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/HBoxContainer/VBoxContainer"]
+[node name="Call to Action" type="Label" parent="Control/CenterContainer/HBoxContainer/CenterContainerQR/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "Check Out my
+Other Work
+"
+horizontal_alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="Control/CenterContainer/HBoxContainer/CenterContainerQR/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer/CenterContainer"]
+[node name="QR Link" type="TextureRect" parent="Control/CenterContainer/HBoxContainer/CenterContainerQR/VBoxContainer/CenterContainer2"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-text = "Special Thanks
-to the Members
-of GBA"
-label_settings = SubResource("LabelSettings_u7kg1")
+texture = ExtResource("4_b8aec")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Spacer Label" type="Label" parent="Control/CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "           "
+
+[node name="CenterContainerCredit" type="CenterContainer" parent="Control/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/CenterContainer/HBoxContainer/CenterContainerCredit"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/CenterContainer/HBoxContainer/CenterContainerCredit/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_obdn8")
+
+[node name="Credit" type="Label" parent="Control/CenterContainer/HBoxContainer/CenterContainerCredit/VBoxContainer2/CenterContainer"]
+layout_mode = 2
+text = "Art, Code, 
+& Music:
+D. Garcia"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="Control/CenterContainer/HBoxContainer/CenterContainerCredit/VBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("3_a1agr")
+theme = ExtResource("1_ilpjx")
 
-[node name="Spacer" type="VBoxContainer" parent="Control/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/Spacer"]
-layout_mode = 2
-text = "  "
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-text = "Art & Code 
-by Dante
-Garcia"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="Control/HBoxContainer/VBoxContainer2"]
+[node name="Button" type="Button" parent="Control/CenterContainer/HBoxContainer/CenterContainerCredit/VBoxContainer2/CenterContainer2"]
 layout_mode = 2
 text = "Return to Main Menu"
 
-[connection signal="pressed" from="Control/HBoxContainer/VBoxContainer2/Button" to="." method="_on_button_pressed"]
+[node name="CenterContainerHM" type="CenterContainer" parent="Control/CenterContainer/HBoxContainer/CenterContainerCredit/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Icon" type="VBoxContainer" parent="Control/CenterContainer/HBoxContainer/CenterContainerCredit/VBoxContainer2/CenterContainerHM"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/CenterContainer/HBoxContainer/CenterContainerCredit/VBoxContainer2/CenterContainerHM/Icon"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("5_e5csv")
+expand_mode = 2
+
+[connection signal="pressed" from="Control/CenterContainer/HBoxContainer/CenterContainerCredit/VBoxContainer2/CenterContainer2/Button" to="." method="_on_button_pressed"]
