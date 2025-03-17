@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var main_menu = "res://Environments/Menus/main_menu.tscn"
+@onready var credits = "res://Environments/Menus/credits_page.tscn"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	AudioHandler.play_music("Menu_Theme")
@@ -10,4 +10,4 @@ func _process(delta):
 	pass
 
 func _on_button_pressed():
-	SceneSwitcher.switch_scene(main_menu)
+	SceneSwitcher.switch_scene(credits)

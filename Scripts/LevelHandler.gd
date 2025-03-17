@@ -58,7 +58,14 @@ func _process(_delta):
 			
 		is_paused = !is_paused
 		player_handler.toggle_activity()
-			
+		
+	#post level clear shortcuts
+	if(Input.is_action_just_pressed("Next Level") and is_level_cleared):
+		go_to_next_level()
+	
+	if(Input.is_action_just_pressed("Level Menu") and is_level_cleared):
+		go_to_level_select()
+		
 func restart_level():
 	#genuinely no other way to automate this
 	current_level = get_tree().current_scene.scene_file_path
@@ -100,4 +107,3 @@ func _end_of_level():
 	is_level_cleared = true
 	level_cleared_screen.update_display()
 	level_cleared_screen.show()
-	AudioHandler.turn_off_music()

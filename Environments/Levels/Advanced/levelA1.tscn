@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://uleclwvi5563"]
+[gd_scene load_steps=12 format=3 uid="uid://uleclwvi5563"]
 
 [ext_resource type="Script" path="res://Scripts/LevelHandler.gd" id="1_ayy2q"]
 [ext_resource type="PackedScene" uid="uid://dcewehjvldfkq" path="res://Environments/Levels/tile_map.tscn" id="2_e6que"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cvybtvwosm8kn" path="res://Objects/guardian.tscn" id="7_u7gxx"]
 [ext_resource type="PackedScene" uid="uid://bgdbr2f4waw4l" path="res://Environments/Menus/level_cleared_screen.tscn" id="8_b6i3i"]
 [ext_resource type="PackedScene" uid="uid://b3binwm225m0k" path="res://Objects/level_exit.tscn" id="8_v5upg"]
+[ext_resource type="Texture2D" uid="uid://cmag5adlq787f" path="res://Art/Game Borders.png" id="10_edt7m"]
 
 [node name="levelA1" type="Node2D"]
 script = ExtResource("1_ayy2q")
@@ -96,6 +97,11 @@ size_flags_vertical = 4
 layout_mode = 2
 text = "to Pass Turn"
 horizontal_alignment = 1
+
+[node name="Borders" type="TextureRect" parent="UI"]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("10_edt7m")
 
 [node name="Menu" type="Control" parent="UI"]
 visible = false

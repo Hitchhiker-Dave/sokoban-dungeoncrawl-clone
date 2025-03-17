@@ -82,17 +82,17 @@ alignment = 1
 [node name="level_select_button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_bw42p")
-text = "Level Select"
+text = "(L)evel Select"
 
 [node name="restart_button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_bw42p")
-text = "Try Again"
+text = "(R)etry"
 
 [node name="next_level_button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_bw42p")
-text = "Next Level"
+text = "(N)ext Level"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/level_select_button" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]
