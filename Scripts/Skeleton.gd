@@ -54,7 +54,7 @@ func do_turn():
 		timer.start()
 		last_spotted = null
 	
-	has_moved.emit(global_position) #tell enemy handler the skeleton is finished and its current position
+	has_moved.emit(global_position) #tell enemy handler the skeleton is finished and its current position	
 	
 func _on_timer_timeout():
 	just_fired = false

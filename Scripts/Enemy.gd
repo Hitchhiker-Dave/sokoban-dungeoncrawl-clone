@@ -16,11 +16,6 @@ func _ready():
 func _process(_delta):
 	pass
 
-func handle_death():
-	AudioHandler.play_sfx("Hit", 0.9, 1.1)
-	dying = true
-	queue_free()
-
 func check_if_in_melee(ray_cast_2d : RayCast2D, direction : Vector2):
 	ray_cast_2d.force_raycast_update()
 	var collider = get_collider(ray_cast_2d, direction, 32)

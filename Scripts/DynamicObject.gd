@@ -2,6 +2,7 @@ extends Node2D
 class_name DynamicObject #basically all the game pieces on the board
 
 @onready var animation_speed := .2 #normal = 0.2, small numbers is faster
+@onready var explode_vfx = preload("res://Objects/explosion_vfx.tscn")
 
 enum ObjectType{
 	FIGHTER,
@@ -114,3 +115,13 @@ func is_path_clear(colliding_object : DynamicObject, direction : Vector2, distan
 	
 func interaction(object : DynamicObject, direction : Vector2):
 	pass
+	
+func handle_death():
+	spawn_explosion()
+	AudioHandler.play_sfx("Hit", 0.9, 1.1)
+	queue_free()
+	
+func spawn_explosion():
+	var instance = explode_vfx.instantiate()
+	add_sibling(instance)
+	instance.position = global_position

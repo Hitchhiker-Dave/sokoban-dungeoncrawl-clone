@@ -16,5 +16,4 @@ func _on_area_2d_area_entered(area):
 	if (area.get_parent().object_type == ObjectType.ENEMY):
 		return
 	
-	AudioHandler.play_sfx("Hit", 0.9, 1.1)
-	queue_free()
+	handle_death()

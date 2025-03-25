@@ -109,8 +109,9 @@ func move(direction: Vector2):
 		self.move_object(direction, move_distance)
 		return
 	
-func handle_death():
+func handle_death(): #overwrite dynamic_object's handle_death()
 	is_active = false
+	spawn_explosion()
 	AudioHandler.play_sfx("Hit", 0.9, 1.1)
 	player_death.emit()
 	queue_free()
