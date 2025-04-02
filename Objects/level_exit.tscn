@@ -7,7 +7,6 @@
 size = Vector2(2, 2)
 
 [node name="level_exit" type="Node2D"]
-z_index = 1
 script = ExtResource("1_achxy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

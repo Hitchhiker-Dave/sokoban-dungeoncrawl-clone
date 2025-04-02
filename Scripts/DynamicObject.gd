@@ -1,8 +1,9 @@
 extends Node2D 
 class_name DynamicObject #basically all the game pieces on the board
 
-@onready var animation_speed := .2 #normal = 0.2, small numbers is faster
+@onready var animation_speed := 0.2 #normal = 0.2, small numbers is faster
 @onready var explode_vfx = preload("res://Objects/explosion_vfx.tscn")
+@onready var dying : bool = false
 
 enum ObjectType{
 	FIGHTER,
@@ -118,6 +119,7 @@ func interaction(object : DynamicObject, direction : Vector2):
 	
 func handle_death():
 	spawn_explosion()
+	dying = true
 	AudioHandler.play_sfx("Hit", 0.9, 1.1)
 	queue_free()
 	

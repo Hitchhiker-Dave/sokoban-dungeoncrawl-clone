@@ -6,7 +6,6 @@ signal has_moved(position : Vector2)
 @onready var direction : Array[Vector2] = [Vector2.LEFT, Vector2.UP, Vector2.RIGHT, Vector2.DOWN]
 @onready var valid_targets = [ObjectType.FIGHTER, ObjectType.ROGUE] #ROGUE Should always be last since they're stealthy
 @onready var invalid_spaces = []
-@onready var dying : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
