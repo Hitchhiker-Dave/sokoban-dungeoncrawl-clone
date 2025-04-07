@@ -43,7 +43,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 16.0
+"speed": 24.0
 }]
 
 [node name="Explosion_VFX" type="Node2D"]

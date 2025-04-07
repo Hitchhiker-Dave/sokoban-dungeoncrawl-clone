@@ -71,7 +71,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 9.0
+"speed": 16.0
 }]
 
 [node name="CoinVfx" type="Node2D"]

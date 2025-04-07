@@ -1,4 +1,7 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ctbm7rt0bnens"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://ctbm7rt0bnens"]
+
+[sub_resource type="SystemFont" id="SystemFont_rxg66"]
+font_names = PackedStringArray("Microsoft New Tai Lue")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3owe"]
 bg_color = Color(0.113725, 0.168627, 0.32549, 1)
@@ -36,7 +39,7 @@ Button/colors/font_hover_pressed_color = Color(0.886275, 0.886275, 0.886275, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 8
 Button/font_sizes/font_size = 16
-Button/fonts/font = null
+Button/fonts/font = SubResource("SystemFont_rxg66")
 Button/styles/focus = SubResource("StyleBoxFlat_x3owe")
 Button/styles/hover = SubResource("StyleBoxFlat_x3owe")
 Button/styles/normal = SubResource("StyleBoxFlat_ug6ys")
